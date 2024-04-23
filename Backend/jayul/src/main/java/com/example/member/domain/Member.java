@@ -14,12 +14,11 @@ public class Member extends BaseEntity {
     private Integer memberId;
 
     @Setter
+    @Column(unique = true)
     private String nickname;
 
-    @Setter
     private String email;
 
-    @Setter
     private String provider;
 
     @Setter
@@ -27,6 +26,9 @@ public class Member extends BaseEntity {
 
     @Setter
     private String profileImage;
+
+    @Column
+    private Boolean isDeleted = false;
 
     @Builder
     public Member(String nickname, String email, String provider, String role, String image){
