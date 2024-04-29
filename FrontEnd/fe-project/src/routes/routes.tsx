@@ -3,7 +3,7 @@ import RootLayout from "../pages/RootLayout";
 import Login from "../pages/Login";
 import Main from "../pages/Main";
 import MyPage from "../pages/MyPage";
-import MakeSong from "../pages/MakeSong";
+import WriteSong from "../pages/WriteSong";
 import PlaySong from "../pages/PlaySong";
 
 const routes = createBrowserRouter([
@@ -20,8 +20,8 @@ const routes = createBrowserRouter([
         element: <Main />,
       },
       {
-        path: "make-song",
-        element: <MakeSong />,
+        path: "write-song",
+        element: <WriteSong />,
       },
       {
         path: "play-song",
