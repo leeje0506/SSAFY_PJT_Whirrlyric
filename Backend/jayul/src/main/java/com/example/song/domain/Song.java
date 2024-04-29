@@ -2,6 +2,7 @@ package com.example.song.domain;
 
 import com.example.common.enums.Genre;
 import com.example.member.domain.Member;
+import com.example.song.config.GenreConverter;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -16,8 +17,9 @@ public class Song {
 
     private String title;
 
+    @Convert(converter = GenreConverter.class)
     @Column(columnDefinition = "char(2)")
-    private Genre genre;        // 임시 KPOP 00, HIPHOP 01, ROCK 02, RAP 03
+    private Genre genre;        // 임시 KPOP 01, HIPHOP 02, BALLAD 03, RAP 04, MUSICAL 05
 
     private String lyrics;
 
