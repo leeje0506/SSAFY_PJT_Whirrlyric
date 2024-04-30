@@ -1,6 +1,6 @@
 package com.example.song.domain;
 
-import com.example.common.enums.Genre;
+import com.example.song.config.Genre;
 import com.example.member.domain.Member;
 import com.example.song.config.GenreConverter;
 import jakarta.persistence.*;
@@ -8,6 +8,7 @@ import lombok.*;
 
 @Entity
 @Getter
+@Setter
 @NoArgsConstructor
 public class Song {
 
