@@ -1,8 +1,11 @@
+import { useNavigate } from "react-router-dom";
 import altUserImg from "../../assets/icons/altUserImg.png";
 
 export default function SimplePlayListCard() {
+  const navigate = useNavigate();
+
   return (
-    <div className="flex mb-2">
+    <div className="flex mb-2 cursor-pointer" onClick={() => {navigate("/play-song")}}>
       <img
         src={altUserImg}
         className="w-12 h-12 border-2 border-gray-400 rounded-xl mr-6"
