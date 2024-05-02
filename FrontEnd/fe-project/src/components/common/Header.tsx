@@ -27,6 +27,8 @@ export default function Header() {
         return "Play Song";
       case "/mypage":
         return "My Page";
+      case "/change-name":
+        return "닉네임 수정";
     }
   };
 
