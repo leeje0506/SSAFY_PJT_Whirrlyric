@@ -1,14 +1,16 @@
 package com.example.song.domain;
 
+import com.example.common.domain.BaseEntity;
 import com.example.common.enums.Genre;
 import com.example.member.domain.Member;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
 @Getter
 @NoArgsConstructor
-public class Song {
+public class Song extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,6 +21,7 @@ public class Song {
     @Column(columnDefinition = "char(2)")
     private Genre genre;        // 임시 KPOP 00, HIPHOP 01, ROCK 02, RAP 03
 
+    @Column(columnDefinition = "text")
     private String lyrics;
 
     @Setter
@@ -31,6 +34,7 @@ public class Song {
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     @JoinColumn(name = "member_id")
+    @JsonIgnore
     private Member member;
 
     // 재생 횟수 + 1
