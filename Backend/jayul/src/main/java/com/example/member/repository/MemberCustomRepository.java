@@ -17,4 +17,10 @@ public class MemberCustomRepository {
             .where(member.memberId.eq(memberId))
             .fetchOne();
     }
+
+    public Member findMemberByNickname(String nickname){
+        return queryFactory.selectFrom(member)
+            .where(member.nickname.eq(nickname))
+            .fetchOne();
+    }
 }

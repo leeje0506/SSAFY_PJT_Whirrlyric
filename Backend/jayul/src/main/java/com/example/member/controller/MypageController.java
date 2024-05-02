@@ -1,5 +1,6 @@
 package com.example.member.controller;
 
+import com.example.member.dto.req.MainSongRequest;
 import com.example.member.dto.res.MypageProfileResponse;
 import com.example.member.service.MypageService;
 import lombok.RequiredArgsConstructor;
@@ -17,5 +18,12 @@ public class MypageController {
         System.out.println("마이페이지 GET");
         MypageProfileResponse response = myPageService.getMemberProfile(id);
         return ResponseEntity.ok(response);
+    }
+
+    @PostMapping("/mainsong")
+    public ResponseEntity<?> setMainSong(@RequestBody MainSongRequest mainSongRequest){
+        Integer createdId = myPageService.setMainSong(mainSongRequest.getSongId(), mainSongRequest.getNickname());
+
+        return ResponseEntity.ok(createdId);
     }
 }
