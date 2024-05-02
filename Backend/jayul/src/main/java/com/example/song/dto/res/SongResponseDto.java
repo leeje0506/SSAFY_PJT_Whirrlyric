@@ -1,17 +1,23 @@
 package com.example.song.dto.res;
 
-import com.example.song.config.Genre;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
 public class SongResponseDto {
-
-    private Integer songId;
+    private String userId;
+    private String songId;
+    private String status;
     private String title;
-    private Genre genre;
-    private String lyrics;
+    private String imageLargeUrl;
     private String imageUrl;
-    private String songUrl;
+    private String modelName;
+    private String videoUrl;
+    private String audioUrl;
+    private String metaTags; // 장르 정보
+    private String metaPrompt; // 가사 정보
+    private Integer metaDuration;
+    private String metaErrorMsg;
+    private String metaErrorType;
 }
