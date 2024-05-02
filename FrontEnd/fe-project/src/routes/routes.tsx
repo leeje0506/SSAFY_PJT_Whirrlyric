@@ -5,6 +5,7 @@ import Main from "../pages/Main";
 import MyPage from "../pages/MyPage";
 import WriteSong from "../pages/WriteSong";
 import PlaySong from "../pages/PlaySong";
+import ChangeName from "../pages/ChangeName";
 
 const routes = createBrowserRouter([
   {
@@ -30,6 +31,10 @@ const routes = createBrowserRouter([
       {
         path: "mypage",
         element: <MyPage />,
+      },
+      {
+        path: "change-name",
+        element: <ChangeName />,
       },
     ],
   },

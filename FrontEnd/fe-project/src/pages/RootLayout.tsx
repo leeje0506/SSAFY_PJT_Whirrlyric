@@ -6,7 +6,7 @@ export default function RootLayout() {
   return (
     <>
       <Header />
-      <div className="pt-[128px]">
+      <div className="w-[430px] pt-[128px] mx-auto">
         <Outlet />
       </div>
       <Footer />

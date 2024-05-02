@@ -1,5 +1,11 @@
+import PlayList from "../components/mypage/PlayList";
+import Profile from "../components/mypage/Profile";
+
 export default function MyPage() {
   return (
-    <div>MyPage</div>
-  )
+    <div>
+      <Profile />
+      <PlayList />
+    </div>
+  );
 }
