@@ -1,5 +1,7 @@
 package com.example.song.service;
 
-public interface SongService {
+import com.example.song.dto.res.SongResponse;
 
+public interface SongService {
+    SongResponse getSongDetail(int songId);
 }

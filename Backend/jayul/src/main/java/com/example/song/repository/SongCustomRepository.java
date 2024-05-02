@@ -20,4 +20,10 @@ public class SongCustomRepository {
             //.orderBy(song.createdAt.desc())
             .fetch();
     }
+
+    public Song findSongBySongId(int songId){
+        return queryFactory.selectFrom(song)
+            .where(song.songId.eq(songId))
+            .fetchOne();
+    }
 }
