@@ -1,5 +1,6 @@
 package com.example.song.controller;
 
+import com.example.song.dto.res.SongResultDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,9 +18,16 @@ public class SongController {
     private final SongService songService;
 
     @PostMapping
-    public Mono<ResponseEntity<SongResponseDto>> createSong(@RequestBody SongRequestDto requestDto) {
-        return songService.createSong(requestDto)
-                .map(response -> ResponseEntity.ok(response))
-                .defaultIfEmpty(ResponseEntity.notFound().build());
+    public ResponseEntity<SongResultDto> createSong(@RequestBody SongRequestDto requestDto) {
+
+
+//        Mono<ResponseEntity<SongResponseDto>> result = songService.createSong(requestDto)
+//                .map(response -> ResponseEntity.ok(response))
+//                .defaultIfEmpty(ResponseEntity.notFound().build());
+
+        SongResultDto songResultDto = songService.createSong(requestDto);
+
+
+        return ResponseEntity.ok(songResultDto);
     }
 }
