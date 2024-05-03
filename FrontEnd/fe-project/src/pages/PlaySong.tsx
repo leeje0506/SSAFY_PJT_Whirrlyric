@@ -2,7 +2,7 @@ import altDiscImg from "../assets/icons/altDiscImg.png";
 
 export default function PlaySong() {
   const dummySong = {
-    songId: "노래 아이디",
+    songId: 1,
     nickname: "닉네임",
     title: "노래 제목",
     lyrics: {
