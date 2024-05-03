@@ -3,8 +3,7 @@ package com.example.song.domain;
 import com.example.common.domain.BaseEntity;
 import com.example.member.domain.Member;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Entity
 @Getter
@@ -21,6 +20,12 @@ public class Mainsong extends BaseEntity {
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     @JoinColumn(name = "song_id")
+    @Setter
     private Song song;
 
+    @Builder
+    public Mainsong(Member member, Song song){
+        this.member = member;
+        this.song = song;
+    }
 }
