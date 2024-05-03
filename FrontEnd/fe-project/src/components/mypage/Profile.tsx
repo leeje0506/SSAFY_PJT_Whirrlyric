@@ -1,15 +1,12 @@
 import { useNavigate } from "react-router-dom";
 import altUserImg from "../../assets/icons/altUserImg.png";
 
-export default function Profile() {
-  const navigate = useNavigate();
+interface ProfileProps {
+  user: MemberProfile;
+}
 
-  const dummyUser = {
-    nickname: "nick",
-    imageUrl: "",
-    mainSong: "songmain",
-    songList: "list",
-  };
+export default function Profile({ user }: ProfileProps) {
+  const navigate = useNavigate();
 
   const pencilIcon = (
     <svg
@@ -28,41 +25,50 @@ export default function Profile() {
     </svg>
   );
 
+  const onTitleChange = () => {
+    
+  }
+
   return (
     <>
       <div className="flex items-center w-[356px] h-[117px] mx-auto">
         <img
-          src={dummyUser.imageUrl || altUserImg}
+          src={user.imageUrl || altUserImg}
           className="w-28 h-28 rounded-full bg-gray-200 border-gray-400 border-2"
         />
         <div className="ml-6 flex-col">
           <div className="flex">
-            <h1>My NickName</h1>
+            <h1>{user.nickname}</h1>
             <button className="ml-2" onClick={() => navigate("/change-name")}>
               {pencilIcon}
             </button>
           </div>
-          {/* <p>my title song</p> */}
 
           <form className="max-w-sm mx-auto">
             <label
               htmlFor="countries"
               className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
             >
-              Select an option
+              My Title Song
             </label>
             <select
               id="countries"
               defaultValue=""
               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              onChange={onTitleChange}
             >
               <option value="" disabled>
-                Choose a country
+                Choose a song
               </option>
-              <option value="US">United States</option>
-              <option value="CA">Canada</option>
-              <option value="FR">France</option>
-              <option value="DE">Germany</option>
+              {user.songList &&
+                user.songList.map((songWithCreator) => (
+                  <option
+                    key={songWithCreator.song.songId}
+                    value={songWithCreator.song.title}
+                  >
+                    {songWithCreator.song.title}
+                  </option>
+                ))}
             </select>
           </form>
         </div>
