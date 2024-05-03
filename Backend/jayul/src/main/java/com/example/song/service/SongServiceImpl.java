@@ -1,9 +1,11 @@
 package com.example.song.service;
 
+import com.example.common.enums.Genre;
 import com.example.song.domain.Song;
 import com.example.song.dto.res.SongResponse;
 import com.example.song.repository.SongCustomRepository;
 import com.example.song.repository.SongRepository;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -21,5 +23,12 @@ public class SongServiceImpl implements SongService{
             .song(song)
             .nickname(song.getMember().getNickname())
             .build();
+    }
+
+    @Override
+    public List<SongResponse> findSongsByGenre(String genre) {
+        Genre genreEnum = Genre.valueOf(genre.toUpperCase());
+
+        return songCustomRepository.findSongsByGenre(genreEnum);
     }
 }
