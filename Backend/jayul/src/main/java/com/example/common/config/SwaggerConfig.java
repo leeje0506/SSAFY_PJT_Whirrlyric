@@ -32,10 +32,10 @@ public class SwaggerConfig {
 		);
 
 		Server deployServer = new Server();
-		deployServer.setUrl("https://whirrlyric.n-e.kr/");
+		deployServer.setUrl("https://whirrlyric.n-e.kr/api/");
 
 		Server devServer = new Server();
-		devServer.setUrl("http://localhost:8080");
+		devServer.setUrl("http://localhost:8080/api/");
 
 		return new OpenAPI()
 			.info(info)
