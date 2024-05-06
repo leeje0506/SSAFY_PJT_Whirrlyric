@@ -17,8 +17,6 @@ public class Member extends BaseEntity {
     @Column(unique = true)
     private String nickname;
 
-    private String email;
-
     private String provider;
 
     @Setter
@@ -31,9 +29,8 @@ public class Member extends BaseEntity {
     private Boolean isDeleted = false;
 
     @Builder
-    public Member(String nickname, String email, String provider, String role, String image){
+    public Member(String nickname, String provider, String role, String image){
         this.nickname = nickname;
-        this.email = email;
         this.provider = provider;
         this.role = role;
         this.profileImage = image;
