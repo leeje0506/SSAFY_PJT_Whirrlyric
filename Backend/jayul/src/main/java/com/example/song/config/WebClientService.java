@@ -78,7 +78,7 @@ public class WebClientService {
     }
 
 
-    public Map<String, Object> post(String baseUrl, Object Dto, Map<String, Object> apiRequest){
+    public Map<String, Object> post(String baseUrl, String path, Map<String, Object> Dto){
 
         // buffer 설정 max로 변경
         ExchangeStrategies exchangeStrategies = ExchangeStrategies.builder()
@@ -108,8 +108,5 @@ public class WebClientService {
 
         return response;
     }
-
-
-
 
 }

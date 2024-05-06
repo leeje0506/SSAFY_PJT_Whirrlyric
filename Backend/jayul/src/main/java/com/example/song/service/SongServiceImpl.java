@@ -43,7 +43,7 @@ public class SongServiceImpl implements SongService {
         apiRequest.put("mv", "chirp-v3-0");
         apiRequest.put("continue_at", 120);
         apiRequest.put("continue_clip_id", "");
-        Map<String, Object> response = webClientService.post("https://api.sunoaiapi.com/api/v1/","/gateway/generate/music", apiRequest );
+        Map<String, Object> response = webClientService.post("https://api.sunoaiapi.com/api/v1/","gateway/generate/music", apiRequest );
 //        Map<String, Object> response = webClientService.post("/gateway/generate/music", apiRequest);
 
         JSONObject resultJson = new JSONObject(response);
