@@ -7,7 +7,7 @@ import lombok.Setter;
 @Setter
 public class SongResponseDto {
     private String userId;
-    private String songId;
+    private String songId; //저장할 때 songURL
     private String status;
     private String title;
     private String imageLargeUrl;

@@ -12,7 +12,7 @@ import com.example.song.service.SongService;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/songs")
+@RequestMapping("/songs")
 public class SongController {
 
     private final SongService songService;
@@ -20,13 +20,7 @@ public class SongController {
     @PostMapping
     public ResponseEntity<SongResultDto> createSong(@RequestBody SongRequestDto requestDto) {
 
-
-//        Mono<ResponseEntity<SongResponseDto>> result = songService.createSong(requestDto)
-//                .map(response -> ResponseEntity.ok(response))
-//                .defaultIfEmpty(ResponseEntity.notFound().build());
-
         SongResultDto songResultDto = songService.createSong(requestDto);
-
 
         return ResponseEntity.ok(songResultDto);
     }

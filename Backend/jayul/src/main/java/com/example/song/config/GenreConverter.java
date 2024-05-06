@@ -15,7 +15,7 @@ public class GenreConverter implements AttributeConverter<Genre, String> {
 
     @Override
     public Genre convertToEntityAttribute(String code) {
-        return Genre.fromCode(code);  // 이전에는 여기에 null을 반환하도록 설정되어 있었습니다.
+        return Genre.fromCode(code);  // 이전에는 여기에 null을 반환하도록 설정되어 있었음!
     }
 
 }

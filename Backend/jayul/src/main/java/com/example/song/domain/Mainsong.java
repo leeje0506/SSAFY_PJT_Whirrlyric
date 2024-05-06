@@ -3,10 +3,12 @@ package com.example.song.domain;
 import com.example.common.domain.BaseEntity;
 import com.example.member.domain.Member;
 import jakarta.persistence.*;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Entity
+@Table(name = "대표노래")
 @Getter
 @NoArgsConstructor
 public class Mainsong extends BaseEntity {

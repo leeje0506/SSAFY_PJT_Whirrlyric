@@ -1,7 +1,7 @@
 package com.example.song.config;
 
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.context.annotation.Bean;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
@@ -9,13 +9,17 @@ import org.springframework.web.reactive.function.BodyInserters;
 import org.springframework.web.reactive.function.client.ExchangeStrategies;
 import org.springframework.web.reactive.function.client.WebClient;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 
 @Service
 @Slf4j
 public class WebClientService {
+
+    @Value("${api.sunoai.key}")
+    private String apiKey;
+    private String path;
 
     public Map<String, Object> get(String baseUrl, String path){
 
@@ -30,7 +34,7 @@ public class WebClientService {
                 .exchangeStrategies(exchangeStrategies)
                 .build();
         // api 요청
-        Map<String, Object> response = webClient.get()
+        Map response = webClient.get()
                 .uri(uriBuilder -> uriBuilder
                         .path(path)
                         .build())
@@ -56,6 +60,7 @@ public class WebClientService {
                 .baseUrl(baseUrl)
                 .exchangeStrategies(exchangeStrategies)
                 .build();
+
         // api 요청
         List<Map> response = webClient.get()
                 .uri(uriBuilder -> uriBuilder
@@ -73,7 +78,7 @@ public class WebClientService {
     }
 
 
-    public Map<String, Object> post(String baseUrl, String path, Object Dto){
+    public Map<String, Object> post(String baseUrl, Object Dto, Map<String, Object> apiRequest){
 
         // buffer 설정 max로 변경
         ExchangeStrategies exchangeStrategies = ExchangeStrategies.builder()
@@ -86,13 +91,13 @@ public class WebClientService {
                 .exchangeStrategies(exchangeStrategies)
                 .build();
         // api 요청
-        Map<String, Object> response = webClient.post()
+        Map response = webClient.post()
                 .uri(uriBuilder -> uriBuilder
                         .path(path)
                         .build())
                 .header(HttpHeaders.CONTENT_TYPE)
                 .contentType(MediaType.APPLICATION_JSON)
-                .header("api-key", "******************************") // <- 하드코딩 되어있던 부분
+                .header("api-key", apiKey) // <- 하드코딩 되어있던 부분
                 .body(BodyInserters.fromValue(Dto))
                 .retrieve()
                 .bodyToMono(Map.class)

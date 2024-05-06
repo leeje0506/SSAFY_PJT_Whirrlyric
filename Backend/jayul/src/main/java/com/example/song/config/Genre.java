@@ -10,7 +10,8 @@ public enum Genre {
     HIPHOP("02"),
     BALLAD("03"),
     RAP("04"),
-    MUSICAL("05");
+    MUSICAL("05"),
+    All("99");
 
 
     private final String code;

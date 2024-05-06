@@ -7,6 +7,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
+@Table(name = "노래")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -20,13 +21,16 @@ public class Song {
 
     @Convert(converter = GenreConverter.class)
     @Column(columnDefinition = "char(2)")
-    private Genre genre;        // 임시 KPOP 01, HIPHOP 02, BALLAD 03, RAP 04, MUSICAL 05
+    private Genre genre;// KPOP 01, HIPHOP 02, BALLAD 03, RAP 04, MUSICAL 05
 
-    private String lyrics;
+    @ManyToOne
+    @JoinColumn(name = "lyrics_id")
+    private Lyrics lyrics;
 
     @Setter
     private String imageUrl;
 
+    @Column(name = "song_url")
     private String songUrl;
 
     @Column
@@ -42,7 +46,7 @@ public class Song {
     }
 
     @Builder
-    public Song(String title, String lyrics, String imageUrl, String songUrl, Member member){
+    public Song(String title, Lyrics lyrics, String imageUrl, String songUrl, Member member){
         this.title = title;
         this.lyrics = lyrics;
         this.imageUrl = imageUrl;

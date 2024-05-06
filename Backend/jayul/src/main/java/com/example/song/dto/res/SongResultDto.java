@@ -8,17 +8,28 @@ package com.example.song.dto.res;
  *
  * */
 
+import lombok.Builder;
 import lombok.Getter;
-import lombok.Setter;
 import lombok.ToString;
-import org.springframework.http.ResponseEntity;
-import reactor.core.publisher.Mono;
 
 @ToString
 @Getter
-@Setter // Setter도 좋은 구현은 아니니까 나중에 build 패턴으로 변경하고 setter 지울 것
+@Builder
 public class SongResultDto {
     private String title;
-    private String song_id;
+    private String songUrl;
+    private String genre;
+    private String lyrics;
+//    private String metaTags; // 장르 정보
+//    private String metaPrompt; // 가사 정보
+
+    @Builder
+    public SongResultDto(String title, String songUrl, String genre, String lyrics) {
+        this.title = title;
+        this.songUrl = songUrl;
+        this.genre = genre;
+        this.lyrics = lyrics;
+    }
 
 }
+// Setter도 좋은 구현은 아니니까 나중에 build 패턴으로 변경하고 setter 지울 것
