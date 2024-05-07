@@ -25,7 +25,7 @@ const routes = createBrowserRouter([
         element: <WriteSong />,
       },
       {
-        path: "play-song",
+        path: "play-song/:songId",
         element: <PlaySong />,
       },
       {
