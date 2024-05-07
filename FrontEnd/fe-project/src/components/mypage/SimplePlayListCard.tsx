@@ -12,7 +12,7 @@ export default function SimplePlayListCard({songWithCreator}: SimplePlayListCard
     <div
       className="flex mb-2 cursor-pointer"
       onClick={() => {
-        navigate("/play-song");
+        navigate(`/play-song/${songWithCreator.song.songId}`);
       }}
     >
       <img
