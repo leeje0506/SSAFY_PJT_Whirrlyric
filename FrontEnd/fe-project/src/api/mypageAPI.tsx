@@ -11,12 +11,12 @@ export const mypageAPI = {
     });
   },
 
-  changeMyMainSong(selectedSongId:string): Promise<AxiosResponse> {
+  changeMyMainSong(selectedSongId:number): Promise<AxiosResponse> {
     return defaultAxios({
         method: "POST",
         url: `${END_POINT}/mainsong`,
         data: {
-            "nickname": "aaa",
+            "nickname": "member1",
             "songId": selectedSongId
         }
     })

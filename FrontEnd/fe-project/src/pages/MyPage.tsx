@@ -4,7 +4,7 @@ import Profile from "../components/mypage/Profile";
 import { useEffect, useState } from "react";
 
 export default function MyPage() {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState<MemberProfile | null>(null);
 
   const getMypageInfo = async () => {
     try {
@@ -24,7 +24,7 @@ export default function MyPage() {
   return (
     <div>
       {user && <Profile user={user} />}
-      <PlayList />
+      {user && <PlayList songList={user.songList} />}
     </div>
   );
 }
