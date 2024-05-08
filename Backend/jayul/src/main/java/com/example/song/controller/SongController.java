@@ -1,8 +1,8 @@
 package com.example.song.controller;
 
+import com.example.song.dto.res.SongListResponse;
 import com.example.song.dto.res.SongResponse;
 import com.example.song.service.SongService;
-import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -21,10 +21,10 @@ public class SongController {
     }
 
     @GetMapping("/list")
-    public ResponseEntity<?> getFilteredList(@RequestParam String genre){
-
-        List<SongResponse> response = songService.findSongsByGenre(genre);
+    public ResponseEntity<?> getSongList(){
+        SongListResponse response = songService.getSongList();
 
         return ResponseEntity.ok(response);
     }
+
 }

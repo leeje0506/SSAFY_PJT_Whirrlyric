@@ -2,10 +2,12 @@ package com.example.song.service;
 
 import com.example.common.enums.Genre;
 import com.example.song.domain.Song;
-import com.example.song.dto.res.SongResponse;
+import com.example.song.dto.res.*;
 import com.example.song.repository.SongCustomRepository;
 import com.example.song.repository.SongRepository;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -26,9 +28,29 @@ public class SongServiceImpl implements SongService{
     }
 
     @Override
-    public List<SongResponse> findSongsByGenre(String genre) {
-        Genre genreEnum = Genre.valueOf(genre.toUpperCase());
+    public SongListResponse getSongList() {
+        List<SongResponse> popularSongList = songCustomRepository.findSongsSortedByPopularity();
+        List<SongResponse> latestSongList = songCustomRepository.findSongsOrderByDate();
 
-        return songCustomRepository.findSongsByGenre(genreEnum);
+        List<GenreList> genreSongList = new ArrayList<>();
+
+        List<SongResponse> SongResponseList = songCustomRepository.findAllSongs();
+
+        for(Genre genre : Genre.values()){
+            List<SongResponse> list = SongResponseList.stream().filter(songResponse -> songResponse.getSong().getGenre() == genre)
+                .collect(Collectors.toList());
+
+            GenreList songListByGenre = GenreList.builder()
+                .genre(genre)
+                .songList(list)
+                .build();
+            genreSongList.add(songListByGenre);
+        }
+        
+        return SongListResponse.builder()
+            .genreSongList(genreSongList)
+            .latestSongList(latestSongList)
+            .popularSongList(popularSongList)
+            .build();
     }
 }
