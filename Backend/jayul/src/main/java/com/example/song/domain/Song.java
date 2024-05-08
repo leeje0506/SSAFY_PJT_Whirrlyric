@@ -7,7 +7,6 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
-//@Table(name = "노래")
 @Getter
 @Setter
 @NoArgsConstructor

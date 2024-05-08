@@ -8,7 +8,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "대표노래")
 @Getter
 @NoArgsConstructor
 public class Mainsong extends BaseEntity {
