@@ -13,20 +13,13 @@ import lombok.*;
 @ToString
 @Getter
 @Builder
+@AllArgsConstructor
 public class SongResultDto {
 
     private String title;
     private String songUrl;
     private String genre;
     private String lyrics;
-
-    @Builder
-    public SongResultDto(String title, String songUrl, String genre, String lyrics) {
-        this.title = title;
-        this.songUrl = songUrl;
-        this.genre = genre;
-        this.lyrics = lyrics;
-    }
 
 }
 
