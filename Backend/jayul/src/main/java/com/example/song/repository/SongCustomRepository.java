@@ -3,7 +3,6 @@ package com.example.song.repository;
 import static com.example.member.domain.QMember.member;
 import static com.example.song.domain.QSong.song;
 
-import com.example.common.enums.Genre;
 import com.example.song.domain.Song;
 import com.example.song.dto.res.SongResponse;
 import com.querydsl.jpa.impl.JPAQueryFactory;
@@ -17,7 +16,7 @@ import org.springframework.stereotype.Repository;
 public class SongCustomRepository {
     private final JPAQueryFactory queryFactory;
 
-    public List<Song> getSongList(int memberId){
+    public List<Song> getMySongList(int memberId){
         return queryFactory.select(song)
             .from(song)
             .where(song.member.memberId.eq(memberId))
@@ -31,14 +30,36 @@ public class SongCustomRepository {
             .fetchOne();
     }
 
-    public List<SongResponse> findSongsByGenre(Genre genre) {
-
+    public List<SongResponse> findSongsSortedByPopularity() {
         List<Song> songs = queryFactory
-            .select(song)
-            .from(song)
+            .selectFrom(song)
             .leftJoin(song.member, member)
-            .where(genre != Genre.ALL ? song.genre.eq(genre) : null)
+            .orderBy(song.playCount.desc())
+            .limit(25)
+            .fetch();
+
+        return songs.stream()
+            .map(s -> new SongResponse(s, s.getMember() != null ? s.getMember().getNickname() : null))
+            .collect(Collectors.toList());
+    }
+
+    public List<SongResponse> findSongsOrderByDate() {
+        List<Song> songs = queryFactory
+            .selectFrom(song)
+            .leftJoin(song.member, member)
             .orderBy(song.createdAt.desc())
+            .fetch();
+
+        return songs.stream()
+            .map(s -> new SongResponse(s, s.getMember() != null ? s.getMember().getNickname() : null))
+            .collect(Collectors.toList());
+    }
+
+    public List<SongResponse> findAllSongs(){
+        List<Song> songs = queryFactory
+            .selectFrom(song)
+            .leftJoin(song.member, member)
+            .orderBy(song.playCount.desc())
             .fetch();
 
         return songs.stream()

@@ -32,7 +32,7 @@ public class MypageService {
             .song(mainSong.getSong())
             .build();
 
-        List<Song> songList = songRepository.getSongList(memberId);
+        List<Song> songList = songRepository.getMySongList(memberId);
 
         List<SongResponse> songResponseList = songList.stream()
             .map(song -> SongResponse.builder()
