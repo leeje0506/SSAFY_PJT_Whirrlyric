@@ -11,7 +11,6 @@ import lombok.*;
 @Setter
 @NoArgsConstructor
 public class Song {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer songId;

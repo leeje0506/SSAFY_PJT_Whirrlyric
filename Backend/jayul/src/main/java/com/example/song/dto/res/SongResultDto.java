@@ -8,14 +8,13 @@ package com.example.song.dto.res;
  *
  * */
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.ToString;
+import lombok.*;
 
 @ToString
 @Getter
 @Builder
 public class SongResultDto {
+
     private String title;
     private String songUrl;
     private String genre;

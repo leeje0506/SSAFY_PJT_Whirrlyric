@@ -1,9 +1,6 @@
 package com.example.song.config;
 
 
-import jakarta.persistence.AttributeConverter;
-import jakarta.persistence.Converter;
-
 // Java에서 열거형 정의
 public enum Genre {
     KPOP("01"),
