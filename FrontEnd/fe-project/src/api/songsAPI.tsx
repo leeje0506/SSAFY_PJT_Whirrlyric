@@ -11,10 +11,10 @@ export const songsAPI = {
     });
   },
 
-  getGenreSongList(genre: string): Promise<AxiosResponse> {
+  getSongList(): Promise<AxiosResponse> {
     return defaultAxios({
       method: "GET",
-      url: `${END_POINT}/list?genre=${genre}`,
+      url: `${END_POINT}/list`,
     });
   },
 

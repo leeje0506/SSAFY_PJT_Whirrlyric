@@ -23,4 +23,18 @@ interface MemberProfile {
   songList: SongWithCreator[] | null;
 }
 
+// mainpage
+interface GenreSongList {
+  genre: string;
+  songList: SongWithCreator[];
+}
+
+interface SongListContainer {
+  popularSongList: SongWithCreator[];
+  latestSongList: SongWithCreator[];
+  genreSongList: GenreSongList[];
+}
+
+
+
 // others..
