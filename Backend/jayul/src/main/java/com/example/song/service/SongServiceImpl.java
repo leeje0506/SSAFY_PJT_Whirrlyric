@@ -5,13 +5,12 @@ import com.example.song.domain.Song;
 import com.example.song.dto.req.SongRequestDto;
 import com.example.song.dto.res.SongResultDto;
 import com.example.song.repository.SongRepository;
+import java.util.HashMap;
+import java.util.Map;
 import lombok.RequiredArgsConstructor;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.stereotype.Service;
-
-import java.util.HashMap;
-import java.util.Map;
 
 @Service
 @RequiredArgsConstructor

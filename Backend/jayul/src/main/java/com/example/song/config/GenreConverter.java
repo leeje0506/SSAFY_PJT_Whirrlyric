@@ -1,7 +1,5 @@
 package com.example.song.config;
 
-import com.example.song.config.Genre;
-
 import jakarta.persistence.AttributeConverter;
 import jakarta.persistence.Converter;
 
