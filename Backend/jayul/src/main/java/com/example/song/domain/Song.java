@@ -7,7 +7,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
-@Table(name = "노래")
+//@Table(name = "노래")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -23,14 +23,13 @@ public class Song {
     @Column(columnDefinition = "char(2)")
     private Genre genre;// KPOP 01, HIPHOP 02, BALLAD 03, RAP 04, MUSICAL 05
 
-    @ManyToOne
-    @JoinColumn(name = "lyrics_id")
-    private Lyrics lyrics;
+    // 가사를 문자열로 저장
+    @Column(columnDefinition = "text")
+    private String lyrics;
 
     @Setter
     private String imageUrl;
 
-    @Column(name = "song_url")
     private String songUrl;
 
     @Column
@@ -46,7 +45,7 @@ public class Song {
     }
 
     @Builder
-    public Song(String title, Lyrics lyrics, String imageUrl, String songUrl, Member member){
+    public Song(String title, String lyrics, String imageUrl, String songUrl, Member member){
         this.title = title;
         this.lyrics = lyrics;
         this.imageUrl = imageUrl;

@@ -6,7 +6,7 @@ import jakarta.persistence.Converter;
 
 // Java에서 열거형 정의
 public enum Genre {
-    K_POP("01"),
+    KPOP("01"),
     HIPHOP("02"),
     BALLAD("03"),
     RAP("04"),
