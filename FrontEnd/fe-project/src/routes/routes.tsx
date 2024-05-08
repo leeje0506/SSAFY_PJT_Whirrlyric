@@ -1,7 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import RootLayout from "../pages/RootLayout";
 import Login from "../pages/Login";
-import Main from "../pages/Main";
+import MainPage from "../pages/MainPage";
 import MyPage from "../pages/MyPage";
 import WriteSong from "../pages/WriteSong";
 import PlaySong from "../pages/PlaySong";
@@ -18,7 +18,7 @@ const routes = createBrowserRouter([
       },
       {
         path: "main",
-        element: <Main />,
+        element: <MainPage />,
       },
       {
         path: "write-song",
