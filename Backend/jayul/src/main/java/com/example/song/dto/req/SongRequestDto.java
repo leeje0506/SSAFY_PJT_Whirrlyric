@@ -22,5 +22,19 @@ public class SongRequestDto {
     private String bridge;
     private String outro;
 
+
+    @Override
+    public String toString() {
+        return String.format(
+            "[Intro]: %s\n[Verse1]: %s\n[Verse2]: %s\n[Chorus]: %s\n[Bridge]: %s\n[Outro]: %s",
+            this.intro,
+            this.verse1,
+            this.verse2,
+            this.chorus,
+            this.bridge,
+            this.outro
+        );
+    }
+
 }
 
