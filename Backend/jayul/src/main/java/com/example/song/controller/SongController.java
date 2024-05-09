@@ -1,9 +1,8 @@
 package com.example.song.controller;
 
-import com.example.song.domain.Song;
 import com.example.song.config.Genre;
 import com.example.song.dto.req.SongRequestDto;
-import com.example.song.dto.res.SongResultDto;
+import com.example.song.dto.res.*;
 import com.example.song.service.SongService;
 import java.util.List;
 import java.util.Map;
@@ -36,14 +35,21 @@ public class SongController {
         return ResponseEntity.ok(genres);
     }
 
-    // 가사 파트 목록 가져오기 (To.여민)
+    // 가사 파트 목록 가져오기
     @GetMapping("/lyrics/parts")
-    public ResponseEntity<List<Map<String, Object>>> getLyricsParts() {
-        List<Map<String, Object>> parts = songService.getLyricsParts();
+    public ResponseEntity<List<LyricsPartDto>> getLyricsParts() {
+        List<LyricsPartDto> parts = songService.getLyricsParts();
         return ResponseEntity.ok(parts);
     }
 
-    // 장르 데이터 목록 가져오기 (To.여민)
+    //가이드 라인 가져오기
+    @GetMapping("/lyrics/guide")
+    public ResponseEntity<LyricsGuideDto> getLyricsGuide() {
+        LyricsGuideDto guide = songService.getLyricsGuide();
+        return ResponseEntity.ok(guide);
+    }
+
+    // 장르 데이터 목록 가져오기
     @GetMapping("/genres/data")
     public ResponseEntity<List<Map<String, Object>>> getGenresData() {
         List<Map<String, Object>> genresData = songService.getGenresData();

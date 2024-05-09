@@ -24,24 +24,6 @@ public class Song {
     @Column(columnDefinition = "text")
     private String lyrics;
 
-    @Column(columnDefinition = "text")
-    private String intro;
-
-    @Column(columnDefinition = "text")
-    private String verse1;
-
-    @Column(columnDefinition = "text")
-    private String verse2;
-
-    @Column(columnDefinition = "text")
-    private String chorus;
-
-    @Column(columnDefinition = "text")
-    private String bridge;
-
-    @Column(columnDefinition = "text")
-    private String outro;
-
     @Setter
     private String imageUrl;
 
@@ -60,16 +42,11 @@ public class Song {
     }
 
     @Builder
-    public Song(String title, String lyrics, Genre genre, String intro, String verse1, String verse2, String chorus, String bridge, String outro, String songUrl, Member member){
+    public Song(String title, String lyrics, Genre genre, String songUrl, Member member){
         this.title = title;
         this.lyrics = lyrics;
         this.genre = genre;
-        this.intro = intro;
-        this.verse1 = verse1;
-        this.verse2 = verse2;
-        this.chorus = chorus;
-        this.bridge = bridge;
-        this.outro = outro;
+
         this.songUrl = songUrl;
         this.member = member;
     }

@@ -5,7 +5,7 @@ import com.example.song.config.Genre;
 import com.example.song.config.WebClientService;
 import com.example.song.domain.Song;
 import com.example.song.dto.req.SongRequestDto;
-import com.example.song.dto.res.SongResultDto;
+import com.example.song.dto.res.*;
 import com.example.song.repository.SongRepository;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -56,6 +56,24 @@ public class SongServiceImpl implements SongService {
         return Arrays.asList(Genre.values());
     }
 
+    @Override
+    public List<LyricsPartDto> getLyricsParts() {
+        return Arrays.asList(
+            new LyricsPartDto(1, "title"),
+            new LyricsPartDto(2, "intro"),
+            new LyricsPartDto(3, "verse1"),
+            new LyricsPartDto(4, "verse2"),
+            new LyricsPartDto(5, "chorus"),
+            new LyricsPartDto(6, "bridge"),
+            new LyricsPartDto(7, "outro")
+        );
+    }
+
+    @Override
+    public LyricsGuideDto getLyricsGuide() {
+        return new LyricsGuideDto("이것은 사용법에 대한 가이드라인입니다.");
+    }
+
     private Map<String, Object> prepareApiRequest(SongRequestDto requestDto, Genre genre, String formattedLyrics) {
         Map<String, Object> apiRequest = new HashMap<>();
         apiRequest.put("title", requestDto.getTitle());
@@ -77,12 +95,6 @@ public class SongServiceImpl implements SongService {
             .genre(genre)
             .title(songData.getString("title"))
             .lyrics(requestDto.toString()) // 모든 가사를 포맷된 문자열로도 저장
-            .intro(requestDto.getIntro())
-            .verse1(requestDto.getVerse1())
-            .verse2(requestDto.getVerse2())
-            .chorus(requestDto.getChorus())
-            .bridge(requestDto.getBridge())
-            .outro(requestDto.getOutro())
             .songUrl("cdn1.suno.ai/" + songData.getString("song_id") + ".mp3") // API에서 반환된 song_id 사용
             .build();
     }
@@ -115,18 +127,6 @@ public class SongServiceImpl implements SongService {
             requestDto.getChorus(), requestDto.getBridge(), requestDto.getOutro());
     }
 
-    @Override
-    public List<Map<String, Object>> getLyricsParts() {
-        List<Map<String, Object>> parts = new ArrayList<>();
-        parts.add(new HashMap<>() {{ put("id", 1); put("lyricsname", "title"); }});
-        parts.add(new HashMap<>() {{ put("id", 2); put("lyricsname", "intro"); }});
-        parts.add(new HashMap<>() {{ put("id", 3); put("lyricsname", "verse1"); }});
-        parts.add(new HashMap<>() {{ put("id", 4); put("lyricsname", "verse2"); }});
-        parts.add(new HashMap<>() {{ put("id", 5); put("lyricsname", "chorus"); }});
-        parts.add(new HashMap<>() {{ put("id", 6); put("lyricsname", "bridge"); }});
-        parts.add(new HashMap<>() {{ put("id", 7); put("lyricsname", "outro"); }});
-        return parts;
-    }
 
     @Override
     public List<Map<String, Object>> getGenresData() {

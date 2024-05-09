@@ -2,9 +2,8 @@ package com.example.song.service;
 
 
 import com.example.song.config.Genre;
-import com.example.song.domain.Song;
 import com.example.song.dto.req.SongRequestDto;
-import com.example.song.dto.res.SongResultDto;
+import com.example.song.dto.res.*;
 import java.util.List;
 import java.util.Map;
 
@@ -16,8 +15,10 @@ public interface SongService {
     List<Map<String, String>> getAllSongLyrics();
 
     List<Genre> getAllGenres();
-    List<Map<String, Object>> getLyricsParts();
+
+    List<LyricsPartDto> getLyricsParts();
+
     List<Map<String, Object>> getGenresData();
 
-
+    LyricsGuideDto getLyricsGuide();
 }
