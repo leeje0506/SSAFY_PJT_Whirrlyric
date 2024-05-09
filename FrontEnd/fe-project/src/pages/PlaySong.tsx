@@ -36,7 +36,7 @@ export default function PlaySong() {
           className="w-80 h-80 mb-4 border-2 border-gray-400 rounded-xl"
         />
       </div>
-      <MusicPlayer/>
+      <MusicPlayer title={songInfo.song.title} songUrl={songInfo.song.songUrl}/>
       <div className="mx-8">
         <h1>{songInfo.song.title}</h1>
         <p>{songInfo.nickname}</p>

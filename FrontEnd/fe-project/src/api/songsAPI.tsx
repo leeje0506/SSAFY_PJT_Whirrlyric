@@ -20,8 +20,9 @@ export const songsAPI = {
 
   downloadSong(downloadUrl: string): Promise<AxiosResponse> {
     return defaultAxios({
-        method: "GET",
-        url: `${END_POINT}/download/${downloadUrl}`
-    })
-  }
+      method: "GET",
+      url: downloadUrl,
+      responseType: "blob",
+    });
+  },
 };
