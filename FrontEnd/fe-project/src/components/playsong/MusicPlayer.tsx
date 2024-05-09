@@ -1,6 +1,12 @@
 import { useState, useRef } from "react";
+import { songsAPI } from "../../api/songsAPI";
 
-export default function MusicPlayer() {
+interface MusicPlayerProps {
+  title: string;
+  songUrl: string;
+}
+
+export default function MusicPlayer({ title, songUrl }: MusicPlayerProps) {
   const audioPlayer = useRef<HTMLAudioElement>(null);
   const progressBarRef = useRef<HTMLDivElement>(null);
   const [isPlaying, setIsPlaying] = useState(false);
@@ -54,15 +60,31 @@ export default function MusicPlayer() {
     handleSkip(newTime);
   };
 
-  const handleDownloadClick = () => {
-    alert("다운로드 기능은 현재 구현되지 않았습니다.");
+  const handleDownloadClick = async () => {
+    try {
+      const response = await songsAPI.downloadSong(songUrl);
+      console.log(response.data);
+      const blob = new Blob([response.data]);
+      const fileObjectUrl = window.URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = fileObjectUrl;
+      link.style.display = "none";
+      link.setAttribute("download", `${title}.mp3`);
+      document.body.appendChild(link);
+
+      link.click();
+      URL.revokeObjectURL(fileObjectUrl);
+      link.remove();
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
     <div className="flex flex-col items-center justify-center space-y-4">
       <audio
         ref={audioPlayer}
-        src="https://cdn1.suno.ai/7bb56215-2d23-4b2d-9373-715227de6fe9.mp3"
+        src={songUrl}
         onLoadedData={handleLoadedData}
         onTimeUpdate={handleTimeUpdate}
       ></audio>
