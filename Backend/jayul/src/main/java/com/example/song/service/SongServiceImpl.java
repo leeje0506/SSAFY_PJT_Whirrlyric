@@ -42,7 +42,7 @@ public class SongServiceImpl implements SongService {
         Song song = buildSong(genre, songData, requestDto);
         songRepository.save(song);
 
-        return new SongResultDto(song.getTitle(), song.getSongUrl(), genre.getCode(), formattedLyrics);
+        return new SongResultDto(song.getSongId(), song.getTitle(), song.getSongUrl(), genre.getCode(), formattedLyrics);
     }
 
     @Override
@@ -92,6 +92,7 @@ public class SongServiceImpl implements SongService {
 
     private Song buildSong(Genre genre, JSONObject songData, SongRequestDto requestDto) {
         return Song.builder()
+            .songId(requestDto.getSongId())
             .genre(genre)
             .title(songData.getString("title"))
             .lyrics(requestDto.toString()) // 모든 가사를 포맷된 문자열로도 저장

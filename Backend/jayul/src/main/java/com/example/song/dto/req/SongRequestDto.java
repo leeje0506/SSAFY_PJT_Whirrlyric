@@ -7,6 +7,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class SongRequestDto {
+    private Integer songId;
     private Integer memberId;
     private String title;
     private String genre; //  요청할 때 tags로
@@ -36,5 +37,8 @@ public class SongRequestDto {
         );
     }
 
+    public Integer getSongId() {
+        return this.songId;
+    }
 }
 

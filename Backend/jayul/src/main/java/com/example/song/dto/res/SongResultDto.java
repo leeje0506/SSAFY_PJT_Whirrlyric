@@ -8,6 +8,7 @@ package com.example.song.dto.res;
  *
  * */
 
+import jakarta.persistence.criteria.CriteriaBuilder.In;
 import lombok.*;
 
 @ToString
@@ -16,6 +17,7 @@ import lombok.*;
 @AllArgsConstructor
 public class SongResultDto {
 
+    private Integer songId;
     private String title;
     private String songUrl;
     private String genre;
