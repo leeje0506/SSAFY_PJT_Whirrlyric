@@ -20,6 +20,6 @@ public class SongResultDto {
     private String songUrl;
     private String genre;
     private String lyrics;
-
+//    private Integer memberId;
 }
 

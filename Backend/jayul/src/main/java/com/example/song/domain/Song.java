@@ -42,12 +42,13 @@ public class Song {
     }
 
     @Builder
-    public Song(String title, String lyrics, String imageUrl, String songUrl, Member member){
+    public Song(String title, String lyrics, String imageUrl, String songUrl, Member member, Genre genre){
         this.title = title;
         this.lyrics = lyrics;
         this.imageUrl = imageUrl;
         this.songUrl = songUrl;
         this.member = member;
+        this.genre = genre;
     }
 
 }

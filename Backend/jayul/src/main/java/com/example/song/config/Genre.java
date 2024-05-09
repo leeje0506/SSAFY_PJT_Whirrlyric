@@ -23,12 +23,22 @@ public enum Genre {
 
     public static Genre fromCode(String code) {
         for (Genre genre : Genre.values()) {
-            if (genre.getCode().equals(code)) {
+            if (genre.getCode().equalsIgnoreCase(code)) { // 대소문자를 구분하지 않고 비교
                 return genre;
             }
         }
         throw new IllegalArgumentException("Unknown genre code: " + code);
     }
+
+    public static Genre fromName(String name) {
+        for (Genre genre : Genre.values()) {
+            if (genre.name().equalsIgnoreCase(name)) {
+                return genre;
+            }
+        }
+        throw new IllegalArgumentException("Unknown genre name: " + name);
+    }
+
 }
 
 

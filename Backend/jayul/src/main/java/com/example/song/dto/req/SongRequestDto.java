@@ -7,6 +7,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class SongRequestDto {
+    private Integer memberId;
     private String title;
     private String genre; //  요청할 때 tags로
     private String mv;
@@ -20,5 +21,6 @@ public class SongRequestDto {
     private String chorus;
     private String bridge;
     private String outro;
+
 }
 
