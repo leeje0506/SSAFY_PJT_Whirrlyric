@@ -59,13 +59,13 @@ public class SongServiceImpl implements SongService {
     @Override
     public List<LyricsPartDto> getLyricsParts() {
         return Arrays.asList(
-            new LyricsPartDto(1, "title"),
-            new LyricsPartDto(2, "intro"),
-            new LyricsPartDto(3, "verse1"),
-            new LyricsPartDto(4, "verse2"),
-            new LyricsPartDto(5, "chorus"),
-            new LyricsPartDto(6, "bridge"),
-            new LyricsPartDto(7, "outro")
+            new LyricsPartDto(1, "Title"),
+            new LyricsPartDto(2, "Intro"),
+            new LyricsPartDto(3, "Verse1"),
+            new LyricsPartDto(4, "Verse2"),
+            new LyricsPartDto(5, "Chorus"),
+            new LyricsPartDto(6, "Bridge"),
+            new LyricsPartDto(7, "Outro")
         );
     }
 
@@ -105,17 +105,17 @@ public class SongServiceImpl implements SongService {
         Map<String, String> lyricsParts = new HashMap<>();
         String[] parts = song.getLyrics().split("\n");
         for (String part : parts) {
-            if (part.startsWith("[intro]")) {
+            if (part.startsWith("[Intro]")) {
                 lyricsParts.put("intro", part.substring(7));
-            } else if (part.startsWith("[verse1]")) {
+            } else if (part.startsWith("[Verse1]")) {
                 lyricsParts.put("verse1", part.substring(8));
-            } else if (part.startsWith("[verse2]")) {
+            } else if (part.startsWith("[Verse2]")) {
                 lyricsParts.put("verse2", part.substring(8));
-            } else if (part.startsWith("[chorus]")) {
+            } else if (part.startsWith("[Chorus]")) {
                 lyricsParts.put("chorus", part.substring(8));
-            } else if (part.startsWith("[bridge]")) {
+            } else if (part.startsWith("[Bridge]")) {
                 lyricsParts.put("bridge", part.substring(8));
-            } else if (part.startsWith("[outro]")) {
+            } else if (part.startsWith("[Outro]")) {
                 lyricsParts.put("outro", part.substring(7));
             }
         }
@@ -124,7 +124,7 @@ public class SongServiceImpl implements SongService {
 
     private String formatLyrics(SongRequestDto requestDto) {
         return String.format(
-            "[intro]\n%s\n[verse1]\n%s\n[verse2]\n%s\n[chorus]\n%s\n[bridge]\n%s\n[outro]\n%s",
+            "[INTRO]\n%s\n[VERSE1]\n%s\n[VERSE2]\n%s\n[CHORUS]\n%s\n[BRIDGE]\n%s\n[OUTRO]\n%s",
             requestDto.getIntro(), requestDto.getVerse1(), requestDto.getVerse2(),
             requestDto.getChorus(), requestDto.getBridge(), requestDto.getOutro());
     }
