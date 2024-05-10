@@ -7,6 +7,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class SongRequestDto {
+
     private Integer songId;
     private Integer memberId;
     private String title;
@@ -15,7 +16,7 @@ public class SongRequestDto {
     private Integer continueAt;
     private String continueClipId;
 
-//    private Lyrics lyrics; //  요청할 때 prompt로
+    //    private Lyrics lyrics; //  요청할 때 prompt로
     private String intro;
     private String verse1;
     private String verse2;
@@ -38,8 +39,5 @@ public class SongRequestDto {
         );
     }
 
-    public Integer getSongId() {
-        return this.songId;
-    }
 }
 

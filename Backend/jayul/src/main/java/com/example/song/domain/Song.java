@@ -1,8 +1,7 @@
 package com.example.song.domain;
 
+import com.example.common.enums.Genre;
 import com.example.member.domain.Member;
-import com.example.song.config.Genre;
-import com.example.song.config.GenreConverter;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -10,13 +9,13 @@ import lombok.*;
 @Getter
 @NoArgsConstructor
 public class Song {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer songId;
 
     private String title;
 
-    @Convert(converter = GenreConverter.class)
     @Column(columnDefinition = "char(2)")
     private Genre genre;// KPOP 01, HIPHOP 02, BALLAD 03, RAP 04, MUSICAL 05
 
@@ -37,12 +36,13 @@ public class Song {
     private Member member;
 
     // 재생 횟수 + 1
-    public void updatePlayCount(){
+    public void updatePlayCount() {
         this.playCount += 1;
     }
 
     @Builder
-    public Song(Integer songId, String title, String lyrics, Genre genre, String songUrl, String imageUrl, Member member){
+    public Song(Integer songId, String title, String lyrics, Genre genre, String songUrl,
+        String imageUrl, Member member) {
         this.songId = songId;
         this.title = title;
         this.lyrics = lyrics;

@@ -1,7 +1,9 @@
 package com.example.song.service;
 
+import com.example.common.enums.Genre;
 import com.example.member.service.MemberService;
-import com.example.song.config.Genre;
+
+import com.example.common.enums.Genre;
 import com.example.song.config.WebClientService;
 import com.example.song.domain.Song;
 import com.example.song.dto.req.SongRequestDto;
@@ -25,14 +27,15 @@ public class SongServiceImpl implements SongService {
     public SongResultDto createSong(SongRequestDto requestDto) {
         // 사용자 입력을 포맷에 맞게 조합
         String formattedLyrics = formatLyrics(requestDto);
+        Genre genre = Genre.fromName(requestDto.getGenre());
 
-        // 장르 코드가 유효한지 확인
-        Genre genre;
-        try {
-            genre = Genre.fromName(requestDto.getGenre());
-        } catch (IllegalArgumentException e) {
-            throw new IllegalArgumentException("Unknown genre name: " + requestDto.getGenre(), e);
-        }
+//        // 장르 코드가 유효한지 확인
+//        Genre genre;
+//        try {
+//            genre = Genre.fromName(requestDto.getGenre());
+//        } catch (IllegalArgumentException e) {
+//            throw new IllegalArgumentException("Unknown genre name: " + requestDto.getGenre(), e);
+//        }
 
         // API 요청을 위한 JSON 객체 생성
         Map<String, Object> apiRequest = prepareApiRequest(requestDto, genre, formattedLyrics);
@@ -42,8 +45,9 @@ public class SongServiceImpl implements SongService {
         Song song = buildSong(genre, songData, requestDto);
         songRepository.save(song);
 
-        return new SongResultDto(song.getSongId(), song.getTitle(), song.getSongUrl(), song.getImageUrl(), genre.getCode(), formattedLyrics);
+        return new SongResultDto(song.getSongId(), song.getTitle(), song.getSongUrl(), song.getImageUrl(), genre.getLabel(), formattedLyrics);
     }
+
 
     @Override
     public List<Map<String, String>> getAllSongLyrics() {
@@ -74,10 +78,11 @@ public class SongServiceImpl implements SongService {
         return new LyricsGuideDto("이것은 사용법에 대한 가이드라인입니다.");
     }
 
+
     private Map<String, Object> prepareApiRequest(SongRequestDto requestDto, Genre genre, String formattedLyrics) {
         Map<String, Object> apiRequest = new HashMap<>();
         apiRequest.put("title", requestDto.getTitle());
-        apiRequest.put("tags", genre.getCode());
+        apiRequest.put("tags", genre.getLabel());
         apiRequest.put("prompt", formattedLyrics);
         apiRequest.put("mv", "chirp-v3-0");
         apiRequest.put("continue_at", 120);
@@ -95,9 +100,9 @@ public class SongServiceImpl implements SongService {
             .songId(requestDto.getSongId())
             .genre(genre)
             .title(songData.getString("title"))
-            .lyrics(requestDto.toString()) // 모든 가사를 포맷된 문자열로도 저장
-            .songUrl("cdn1.suno.ai/" + songData.getString("song_id") + ".mp3") // API에서 반환된 song_id 사용
-            .imageUrl("cdn1.suno.ai/image_" +songData.getString("song_id") +".png") // API에서 반환된 song_id 사용
+            .lyrics(requestDto.toString())
+            .songUrl("cdn1.suno.ai/" + songData.getString("song_id") + ".mp3")
+            .imageUrl("cdn1.suno.ai/image_" + songData.getString("song_id") + ".png")
             .build();
     }
 

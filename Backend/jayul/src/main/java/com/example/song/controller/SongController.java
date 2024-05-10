@@ -1,6 +1,7 @@
 package com.example.song.controller;
 
-import com.example.song.config.Genre;
+
+import com.example.common.enums.Genre;
 import com.example.song.dto.req.SongRequestDto;
 import com.example.song.dto.res.*;
 import com.example.song.service.SongService;

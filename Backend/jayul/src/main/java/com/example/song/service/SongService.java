@@ -1,7 +1,8 @@
 package com.example.song.service;
 
 
-import com.example.song.config.Genre;
+
+import com.example.common.enums.Genre;
 import com.example.song.dto.req.SongRequestDto;
 import com.example.song.dto.res.*;
 import java.util.List;
