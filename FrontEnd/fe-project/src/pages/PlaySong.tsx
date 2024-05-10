@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom";
 import MusicPlayer from "../components/playsong/MusicPlayer";
 
 export default function PlaySong() {
-  const {songId} = useParams();
+  const { songId } = useParams();
 
   const [songInfo, setSongInfo] = useState<SongWithCreator | null>(null);
 
@@ -29,20 +29,25 @@ export default function PlaySong() {
   }, [songId]);
 
   return (
-    songInfo && <div>
-      <div className="flex flex-col items-center">
-        <img
-          src={songInfo.song.imageUrl || altDiscImg}
-          className="w-80 h-80 mb-4 border-2 border-gray-400 rounded-xl"
+    songInfo && (
+      <div>
+        <div className="flex flex-col items-center">
+          <img
+            src={songInfo.song.imageUrl || altDiscImg}
+            className="w-80 h-80 mb-4 border-2 border-gray-400 rounded-xl"
+          />
+        </div>
+        <MusicPlayer
+          title={songInfo.song.title}
+          songUrl={songInfo.song.songUrl}
         />
+        <div className="mx-8">
+          <h1>{songInfo.song.title}</h1>
+          <p>{songInfo.nickname}</p>
+          <h1>Lyrics</h1>
+          <p>{songInfo.song.lyrics}</p>
+        </div>
       </div>
-      <MusicPlayer title={songInfo.song.title} songUrl={songInfo.song.songUrl}/>
-      <div className="mx-8">
-        <h1>{songInfo.song.title}</h1>
-        <p>{songInfo.nickname}</p>
-        <h1>Lyrics</h1>
-        <p>{songInfo.song.lyrics}</p>
-      </div>
-    </div>
+    )
   );
 }

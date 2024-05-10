@@ -11,14 +11,14 @@ export const mypageAPI = {
     });
   },
 
-  changeMyMainSong(selectedSongId:number): Promise<AxiosResponse> {
+  changeMyMainSong(selectedSongId: number): Promise<AxiosResponse> {
     return defaultAxios({
-        method: "POST",
-        url: `${END_POINT}/mainsong`,
-        data: {
-            "nickname": "member1",
-            "songId": selectedSongId
-        }
-    })
-  }
+      method: "POST",
+      url: `${END_POINT}/mainsong`,
+      data: {
+        nickname: "member1",
+        songId: selectedSongId,
+      },
+    });
+  },
 };
