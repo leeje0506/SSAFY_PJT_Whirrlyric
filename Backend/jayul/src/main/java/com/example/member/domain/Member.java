@@ -4,9 +4,21 @@ import com.example.common.domain.BaseEntity;
 import jakarta.persistence.*;
 import lombok.*;
 
+
 @Entity
 @Getter
 @NoArgsConstructor
+@Table(name = "member",
+    uniqueConstraints = {
+        @UniqueConstraint(
+            name = "oauth_id_unique",
+            columnNames = {
+                "oauth_server_id",
+                "provider"
+            }
+        ),
+    }
+)
 public class Member extends BaseEntity {
 
     @Id
@@ -17,22 +29,25 @@ public class Member extends BaseEntity {
     @Column(unique = true)
     private String nickname;
 
-    private String provider;
+    @Embedded
+    private OauthId oauthId;
 
     @Setter
     private String role;
 
     @Setter
-    private String profileImage;
+    private Integer profileImage;
 
-    @Column
-    private Boolean isDeleted = false;
+    @Setter
+    @NonNull
+    private Boolean isDeleted;
 
     @Builder
-    public Member(String nickname, String provider, String role, String image){
+    public Member(String nickname, OauthId oauthId, String role, Integer image, Boolean isDeleted) {
         this.nickname = nickname;
-        this.provider = provider;
+        this.oauthId = oauthId;
         this.role = role;
         this.profileImage = image;
+        this.isDeleted = false;
     }
 }
