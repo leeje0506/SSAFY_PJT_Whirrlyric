@@ -110,7 +110,7 @@ export default function WriteSong() {
 
     );
 
-    const clickGuide = async (event) => {
+    const clickGuide = async () => {
         const response = await makeMusicAPI.getGuide();
         console.log(response.data.description);
         setGuide(response.data.description);
