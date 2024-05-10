@@ -1,6 +1,10 @@
 package com.example.member.service;
 
+import com.example.common.exception.BaseException;
+import com.example.common.exception.ErrorCode;
 import com.example.member.domain.Member;
+import com.example.member.domain.type.OauthServerType;
+import com.example.member.dto.res.MemberEditDto;
 import com.example.member.dto.res.MypageProfileResponse;
 import com.example.member.exception.MemberNotFoundException;
 import com.example.member.repository.MemberRepository;
@@ -9,7 +13,10 @@ import com.example.song.domain.Song;
 import com.example.song.dto.res.SongResponse;
 import com.example.song.exception.SongNotFoundException;
 import com.example.song.repository.*;
+import io.swagger.v3.oas.annotations.Operation;
+import jakarta.servlet.http.HttpServletResponse;
 import java.util.List;
+import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -19,11 +26,13 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class MypageService {
 
-    private final MemberRepository memberRepository;
     private final MainsongCustomRepository mainSongCustomRepository;
     private final SongCustomRepository songCustomRepository;
     private final SongRepository songRepository;
     private final MainsongRepository mainsongRepository;
+    private final MemberRepository memberRepository;
+    private final OauthService oauthService;
+    private final TokenService tokenService;
 
     public MypageProfileResponse getMemberProfile(int memberId) {
         Member member = memberRepository.findById(memberId)
@@ -75,5 +84,29 @@ public class MypageService {
         }
 
         return savedSong.getId();
+    }
+
+    public MemberEditDto updateMember(Member member, MemberEditDto request) {
+        Optional<Member> existingMember = memberRepository.findByNickname(request.nickname());
+        if (existingMember.isPresent()) {
+            throw new BaseException(ErrorCode.MEMBER_NICKNAME_DUPLICATED);
+        }
+
+        member.setNickname(request.nickname());
+        memberRepository.save(member);
+
+        return MemberEditDto.builder().nickname(request.nickname()).build();
+    }
+
+    @Operation(
+        summary = "회원가입 탈퇴"
+    )
+    public void deleteMember(HttpServletResponse response, OauthServerType oauthServerType,
+        Member member) {
+        oauthService.logout(response, oauthServerType,
+            member.getOauthId().getOauthServerId());   //카카오톡 로그아웃
+        tokenService.deleteHeader(response);
+        member.setIsDeleted(true);
+        memberRepository.save(member);
     }
 }

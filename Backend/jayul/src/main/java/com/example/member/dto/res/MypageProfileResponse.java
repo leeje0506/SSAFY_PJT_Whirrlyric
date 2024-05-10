@@ -9,7 +9,7 @@ import lombok.*;
 @Builder
 public class MypageProfileResponse {
     private String nickname;
-    private String imageUrl;
+    private Integer imageUrl;
     private SongResponse mainSong;
     private List<SongResponse> songList;
 }

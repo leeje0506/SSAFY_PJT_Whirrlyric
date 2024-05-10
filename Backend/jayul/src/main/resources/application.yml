@@ -14,4 +14,25 @@ spring:
     operationsSorter: method
     disable-swagger-default-url: true
     display-request-duration: true
-
+  security:
+    oauth2:
+      client:
+        registration:
+          kakao:
+            client-id: ${KAKAO_CLIENT_ID} #카카오에서 발급 받은 APP REST API 키
+            client-secret: ${KAKAO_SECRET_KEY} #kakao에서 발급받은 토큰 발급 시 보안을 강화하기 위해 추가 확인하는 코드
+            redirect-uri: ${KAKAO_REDIRECT_URI}
+            authorization-grant-type: authorization_code
+            client-authentication-method: client_secret_post #Spring security 5.6 이후로 POST에서 client_secret_post로 변경됨
+            client-name: kakao
+            scope: profile_nickname #동의 항목들
+        provider:
+          kakao:
+            authorization-uri: https://kauth.kakao.com/oauth/authorize # 인가 코드 받기
+            token-uri: https://kauth.kakao.com/oauth/token # 토큰 받기
+            user-info-uri: https://kapi.kakao.com/v2/user/me #사용자 정보 가져오기
+            user-name-attribute: id # 식별자 . 카카오의 경우 "id" 사용
+  jwt:
+    token:
+      secret-key: ${SECRET_KEY}
+      refresh-secret-key: ${REFRESH_SECRET_KEY}

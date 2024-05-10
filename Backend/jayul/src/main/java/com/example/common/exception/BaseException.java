@@ -1,11 +1,13 @@
 package com.example.common.exception;
 
+
+
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+
+@Getter
+@RequiredArgsConstructor
 public class BaseException extends RuntimeException {
 
-    ErrorCode errorCode;
-
-    public BaseException(ErrorCode errorCode) {
-        this.errorCode = errorCode;
-    }
-
+    private final ErrorCode errorCode;
 }
