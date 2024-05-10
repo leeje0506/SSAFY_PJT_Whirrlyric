@@ -3,6 +3,7 @@ package com.example.song.service;
 import com.example.common.enums.Genre;
 import com.example.song.domain.Song;
 import com.example.song.dto.res.*;
+import com.example.song.exception.SongNotFoundException;
 import com.example.song.repository.SongCustomRepository;
 import com.example.song.repository.SongRepository;
 import java.util.ArrayList;
@@ -13,13 +14,15 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class SongServiceImpl implements SongService{
+public class SongServiceImpl implements SongService {
+
     private final SongRepository songRepository;
     private final SongCustomRepository songCustomRepository;
 
     @Override
     public SongResponse getSongDetail(int songId) {
-        Song song = songCustomRepository.findSongBySongId(songId);
+
+        Song song = songRepository.findById(songId).orElseThrow(SongNotFoundException::new);
 
         return SongResponse.builder()
             .song(song)
@@ -36,8 +39,9 @@ public class SongServiceImpl implements SongService{
 
         List<SongResponse> SongResponseList = songCustomRepository.findAllSongs();
 
-        for(Genre genre : Genre.values()){
-            List<SongResponse> list = SongResponseList.stream().filter(songResponse -> songResponse.getSong().getGenre() == genre)
+        for (Genre genre : Genre.values()) {
+            List<SongResponse> list = SongResponseList.stream()
+                .filter(songResponse -> songResponse.getSong().getGenre() == genre)
                 .collect(Collectors.toList());
 
             GenreList songListByGenre = GenreList.builder()
@@ -46,7 +50,7 @@ public class SongServiceImpl implements SongService{
                 .build();
             genreSongList.add(songListByGenre);
         }
-        
+
         return SongListResponse.builder()
             .genreSongList(genreSongList)
             .latestSongList(latestSongList)
