@@ -20,13 +20,17 @@ export default function MainPage() {
   };
 
   const popularListSize = 5;
-  const popularSongList = songList ? (Array.from({ length: 3 }, (_, index) =>
-    songList.popularSongList.slice(index * popularListSize, (index + 1) * popularListSize)
-  ) as [SongWithCreator[]]): (null);
+  const popularSongList = songList
+    ? (Array.from({ length: 3 }, (_, index) =>
+        songList.popularSongList.slice(
+          index * popularListSize,
+          (index + 1) * popularListSize
+        )
+      ) as [SongWithCreator[]])
+    : null;
 
   const latestSongList = songList?.latestSongList;
   const genreSongList = songList?.genreSongList;
-  
 
   useEffect(() => {
     getSongList();
@@ -46,10 +50,14 @@ export default function MainPage() {
               key={index}
               className="flex flex-col items-center relative h-full w-full bg-gray-200"
             >
-              <h1>{`인기곡 ${index+1}`}</h1>
+              <h1>{`인기곡 ${index + 1}`}</h1>
               <div>
                 {songs.map((song, i) => (
-                  <DetailPlayListCard key={song.song.songId} rank={index*5+i+1} songWithCreator={song}/>
+                  <DetailPlayListCard
+                    key={song.song.songId}
+                    rank={index * 5 + i + 1}
+                    songWithCreator={song}
+                  />
                 ))}
               </div>
             </div>
@@ -65,20 +73,21 @@ export default function MainPage() {
         <h1>Latest</h1>
         <div className="flex">
           {latestSongList?.map((song) => (
-            <AlbumCard key={song.song.songId} songWithCreator={song}/>
+            <AlbumCard key={song.song.songId} songWithCreator={song} />
           ))}
         </div>
       </DragScrollContainer>
 
       {genreSongList?.map((songListWithGenre) => (
-       <DragScrollContainer addClass="mt-8 w-[400px]">
-        <h1>{songListWithGenre.genre}</h1>
-        <div className="flex">
-          {songListWithGenre.songList.map((song) => (
-            <AlbumCard key={song.song.songId} songWithCreator={song} />
-          ))}
-        </div>
-      </DragScrollContainer>))}
+        <DragScrollContainer addClass="mt-8 w-[400px]">
+          <h1>{songListWithGenre.genre}</h1>
+          <div className="flex">
+            {songListWithGenre.songList.map((song) => (
+              <AlbumCard key={song.song.songId} songWithCreator={song} />
+            ))}
+          </div>
+        </DragScrollContainer>
+      ))}
     </>
   );
 }

@@ -11,13 +11,19 @@ export default function Footer() {
   return (
     <div className="footer-container fixed bottom-0 left-0 w-full">
       <div className="flex items-center w-[430px] h-[80px] mx-auto bg-white border-t border-gray-200">
-        <button className={footerButtonStyle} onClick={() => navigate("/write-song")}>
+        <button
+          className={footerButtonStyle}
+          onClick={() => navigate("/write-song")}
+        >
           {plusIcon}
         </button>
         <button className={footerButtonStyle} onClick={() => navigate("/main")}>
           {homeIcon}
         </button>
-        <button className={footerButtonStyle} onClick={() => navigate("/mypage")}>
+        <button
+          className={footerButtonStyle}
+          onClick={() => navigate("/mypage")}
+        >
           {userIcon}
         </button>
       </div>
