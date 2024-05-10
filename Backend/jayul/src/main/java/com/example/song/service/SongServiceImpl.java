@@ -42,7 +42,7 @@ public class SongServiceImpl implements SongService {
         Song song = buildSong(genre, songData, requestDto);
         songRepository.save(song);
 
-        return new SongResultDto(song.getSongId(), song.getTitle(), song.getSongUrl(), genre.getCode(), formattedLyrics);
+        return new SongResultDto(song.getSongId(), song.getTitle(), song.getSongUrl(), song.getImageUrl(), genre.getCode(), formattedLyrics);
     }
 
     @Override
@@ -97,6 +97,7 @@ public class SongServiceImpl implements SongService {
             .title(songData.getString("title"))
             .lyrics(requestDto.toString()) // 모든 가사를 포맷된 문자열로도 저장
             .songUrl("cdn1.suno.ai/" + songData.getString("song_id") + ".mp3") // API에서 반환된 song_id 사용
+            .imageUrl("cdn1.suno.ai/image_" +songData.getString("song_id") +".png") // API에서 반환된 song_id 사용
             .build();
     }
 
