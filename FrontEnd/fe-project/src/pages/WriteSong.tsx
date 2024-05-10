@@ -67,13 +67,13 @@ export default function WriteSong() {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
     const data: createMusicForm = {
-      title: formData.get("title") as string,
-      intro: formData.get("intro") as string,
-      verse1: formData.get("verse1") as string,
-      verse2: formData.get("verse2") as string,
-      chorus: formData.get("chorus") as string,
-      bridge: formData.get("bridge") as string,
-      outro: formData.get("outro") as string,
+      title: formData.get("Title") as string,
+      intro: formData.get("Intro") as string,
+      verse1: formData.get("Verse1") as string,
+      verse2: formData.get("Verse2") as string,
+      chorus: formData.get("Chorus") as string,
+      bridge: formData.get("Bridge") as string,
+      outro: formData.get("Outro") as string,
       genre: formData.get("genre") as string,
     };
 
