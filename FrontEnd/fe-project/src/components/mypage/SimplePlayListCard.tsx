@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import altDiscImg from "../../assets/icons/altDiscImg.png";
+import altDiscImg from "../../assets/altImages/altDiscImg.png";
 
 interface SimplePlayListCardProps {
   songWithCreator: SongWithCreator;
