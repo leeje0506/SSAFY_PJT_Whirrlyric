@@ -19,10 +19,12 @@ public enum ErrorCode {
     EXPIRED_REFRESH_TOKEN(404, "만료된 refresh token 입니다."),
 
     // 4xx: Client Errors
-    NOT_FOUND(404, "Not Found"), METHOD_NOT_ALLOWED(405, "Method Not Allowed"), CONFLICT(409, "Conflict"),
+    NOT_FOUND(404, "Not Found"), METHOD_NOT_ALLOWED(405, "Method Not Allowed"), CONFLICT(409,
+        "Conflict"),
 
     // 5xx: Server Errors
-    INTERNAL_SERVER_ERROR(500, "Internal Server Error"), NOT_IMPLEMENTED(501, "Not Implemented"), BAD_GATEWAY(502,
+    INTERNAL_SERVER_ERROR(500, "Internal Server Error"), NOT_IMPLEMENTED(501,
+        "Not Implemented"), BAD_GATEWAY(502,
         "Bad Gateway"), SERVICE_UNAVAILABLE(503, "Service Unavailable"), GATEWAY_TIMEOUT(504,
         "Gateway Timeout"), HTTP_VERSION_NOT_SUPPORTED(505, "HTTP Version Not Supported"),
 
