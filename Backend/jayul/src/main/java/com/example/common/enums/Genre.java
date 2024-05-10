@@ -21,4 +21,5 @@ public enum Genre implements LabelEnum{
             super(Genre.class);
         }
     }
+
 }

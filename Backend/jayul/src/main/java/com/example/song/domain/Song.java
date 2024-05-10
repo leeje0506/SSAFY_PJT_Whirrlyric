@@ -19,8 +19,9 @@ public class Song extends BaseEntity {
     private String title;
 
     @Column(columnDefinition = "char(2)")
-    private Genre genre;        // 임시 KPOP 00, HIPHOP 01, ROCK 02, RAP 03
+    private Genre genre;// KPOP 01, HIPHOP 02, BALLAD 03, RAP 04, MUSICAL 05
 
+    // 가사를 문자열로 저장
     @Column(columnDefinition = "text")
     private String lyrics;
 
@@ -38,16 +39,19 @@ public class Song extends BaseEntity {
     private Member member;
 
     // 재생 횟수 + 1
-    public void updatePlayCount(){
+    public void updatePlayCount() {
         this.playCount += 1;
     }
 
     @Builder
-    public Song(String title, String lyrics, String imageUrl, String songUrl, Member member){
+    public Song(Integer songId, String title, String lyrics, Genre genre, String songUrl,
+        String imageUrl, Member member) {
+        this.songId = songId;
         this.title = title;
         this.lyrics = lyrics;
-        this.imageUrl = imageUrl;
+        this.genre = genre;
         this.songUrl = songUrl;
+        this.imageUrl = imageUrl;
         this.member = member;
     }
 
