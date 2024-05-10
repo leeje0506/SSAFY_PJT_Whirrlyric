@@ -1,5 +1,6 @@
 package com.example.song.service;
 
+import com.example.member.domain.Member;
 import com.example.song.dto.res.SongListResponse;
 import com.example.song.dto.res.SongResponse;
 import com.example.common.enums.Genre;
@@ -14,7 +15,7 @@ public interface SongService {
 
     SongListResponse getSongList();
 
-    SongResultDto createSong(SongRequestDto requestDto);
+    SongResultDto createSong(SongRequestDto requestDto, Member member);
 
     List<Map<String, String>> getAllSongLyrics();
 

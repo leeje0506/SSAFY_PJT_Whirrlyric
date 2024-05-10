@@ -8,6 +8,7 @@ package com.example.song.dto.res;
  *
  * */
 
+import com.example.member.domain.Member;
 import jakarta.persistence.criteria.CriteriaBuilder.In;
 import lombok.*;
 
@@ -23,6 +24,7 @@ public class SongResultDto {
     private String imageUrl;
     private String genre;
     private String lyrics;
+    private Member member;
 //    private Integer memberId;
 }
 

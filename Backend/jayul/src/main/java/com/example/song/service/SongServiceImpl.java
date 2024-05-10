@@ -1,6 +1,7 @@
 package com.example.song.service;
 
 import com.example.common.enums.Genre;
+import com.example.member.domain.Member;
 import com.example.member.service.MemberService;
 import com.example.song.config.WebClientService;
 import com.example.song.domain.Song;
@@ -64,7 +65,7 @@ public class SongServiceImpl implements SongService {
     }
 
     @Override
-    public SongResultDto createSong(SongRequestDto requestDto) {
+    public SongResultDto createSong(SongRequestDto requestDto, Member member) {
         // 사용자 입력을 포맷에 맞게 조합
         String formattedLyrics = formatLyrics(requestDto);
         Genre genre = Genre.valueOf(requestDto.getGenre());
@@ -74,11 +75,11 @@ public class SongServiceImpl implements SongService {
         JSONObject songData = postCreateSong(apiRequest);
 
         // 노래 객체 생성 및 저장
-        Song song = buildSong(genre, songData, requestDto);
+        Song song = buildSong(genre, songData, requestDto, member);
         songRepository.save(song);
 
         return new SongResultDto(song.getSongId(), song.getTitle(), song.getSongUrl(),
-            song.getImageUrl(), genre.getLabel(), formattedLyrics);
+            song.getImageUrl(), genre.getLabel(), formattedLyrics, member);
     }
 
 
@@ -130,7 +131,8 @@ public class SongServiceImpl implements SongService {
         return new JSONObject(response).getJSONArray("data").getJSONObject(0);
     }
 
-    private Song buildSong(Genre genre, JSONObject songData, SongRequestDto requestDto) {
+    private Song buildSong(Genre genre, JSONObject songData, SongRequestDto requestDto,
+        Member member) {
         return Song.builder()
             .songId(requestDto.getSongId())
             .genre(genre)
@@ -138,7 +140,7 @@ public class SongServiceImpl implements SongService {
             .lyrics(requestDto.toString())
             .songUrl("cdn1.suno.ai/" + songData.getString("song_id") + ".mp3")
             .imageUrl("cdn1.suno.ai/image_" + songData.getString("song_id") + ".png")
-            .member(null)
+            .member(member)
             .build();
     }
 
