@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { songsAPI } from "../api/songsAPI";
-import altDiscImg from "../assets/icons/altDiscImg.png";
+import altDiscImg from "../assets/altImages/altDiscImg.png";
 import { useParams } from "react-router-dom";
 import MusicPlayer from "../components/playsong/MusicPlayer";
 
