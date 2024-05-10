@@ -22,12 +22,4 @@ public enum Genre implements LabelEnum{
         }
     }
 
-    public static Genre fromName(String name) {
-        for (Genre genre : Genre.values()) {
-            if (genre.name().equalsIgnoreCase(name)) {
-                return genre;
-            }
-        }
-        throw new IllegalArgumentException("Unknown genre name: " + name);
-    }
 }

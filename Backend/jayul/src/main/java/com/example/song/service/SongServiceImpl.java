@@ -27,7 +27,7 @@ public class SongServiceImpl implements SongService {
     public SongResultDto createSong(SongRequestDto requestDto) {
         // 사용자 입력을 포맷에 맞게 조합
         String formattedLyrics = formatLyrics(requestDto);
-        Genre genre = Genre.fromName(requestDto.getGenre());
+        Genre genre = Genre.valueOf(requestDto.getGenre());
 
 //        // 장르 코드가 유효한지 확인
 //        Genre genre;
