@@ -16,3 +16,8 @@
   src: url("https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff")
     format("woff");
 }
+
+@font-face {
+  font-family: "FasterOne";
+  src: url('https://fonts.googleapis.com/css2?family=Faster+One&display=swap');
+}
