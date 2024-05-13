@@ -14,13 +14,13 @@ export default function KakaoRedirectPage(){
             const data = response.data; // 응답 데이터
             console.log("로그인 성공: " + JSON.stringify(data));
             console.log("accessToken: " + data.accessToken);
-
+            console.log(data);
             //토큰 받아서 localstorage에 저장
             localStorage.setItem("accessToken", data.accessToken);
             navigate("/write-song");  // 성공 시 리다이렉트할 경로
         } catch (error) {
             console.error("로그인 실패", error);
-            navigate("/");  // 실패 시 리다이렉트할 경로
+            // navigate("/");  // 실패 시 리다이렉트할 경로
         }
     };
 
