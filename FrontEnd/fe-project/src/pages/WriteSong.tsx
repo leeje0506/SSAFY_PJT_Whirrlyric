@@ -83,9 +83,10 @@ export default function WriteSong() {
       const response = await makeMusicAPI.createMusic(data);
       console.log("Response:", response.data);
       // 노래 상세 페이지로 navigate 갈 것.
-      navigate(`play-song/${response.data.songId}`);
+      navigate(`/play-song/${response.data.songId}`);
     } catch (error) {
       console.error("Error submitting form:", error);
+      navigate(`/write-song`);
     }
   };
 
