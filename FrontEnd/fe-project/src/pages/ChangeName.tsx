@@ -1,7 +1,24 @@
+import { useState } from "react";
 import Button from "../components/common/Button";
+import { mypageAPI } from "../api/mypageAPI";
 
 export default function ChangeName() {
-  const handleOnClick = () => {};
+  const [nickname, setNickname] = useState("");
+
+  const ChangeName = async (nickname: string) => {
+    try {
+      const response = await mypageAPI.changeName(nickname);
+
+      console.log(response);
+    } catch (error) {
+      alert("주의 사항을 확인해 주세요.")
+      console.error(error);
+    }
+  };
+
+  const handleOnClick = () => {
+    ChangeName(nickname);
+  };
 
   return (
     <div className="flex flex-col h-[600px] md:h-96 justify-between">
@@ -13,6 +30,7 @@ export default function ChangeName() {
           <input
             type="text"
             id="nickname-input"
+            onChange={(e) => setNickname(e.target.value)}
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           />
         </div>
@@ -25,13 +43,7 @@ export default function ChangeName() {
           </span>
         </div>
       </div>
-      <Button
-        label="Done"
-        addClass="mx-auto"
-        onClick={() => {
-          handleOnClick;
-        }}
-      />
+      <Button label="Done" addClass="mx-auto" onClick={handleOnClick} />
     </div>
   );
 }

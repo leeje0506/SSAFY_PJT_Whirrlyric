@@ -1,11 +1,12 @@
 import { AxiosResponse } from "axios";
-import { defaultAxios } from "./AuthoCommon";
+import { defaultAxios } from "./AuthCommon";
 
 const END_POINT = "songs";
 
 export const makeMusicAPI = {
   // 음악 만들기
   createMusic(data: createMusicForm): Promise<AxiosResponse> {
+    console.log(localStorage.getItem("accessToken"));
     console.log("creating music");
     console.log(data);
     return defaultAxios({

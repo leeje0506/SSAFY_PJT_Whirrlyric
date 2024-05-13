@@ -1,5 +1,5 @@
 import { AxiosResponse } from "axios";
-import { defaultAxios } from "./AuthoCommon";
+import { defaultAxios } from "./AuthCommon";
 
 const END_POINT = "oauth";
 // const END_POINT_MEMBER = "members"
