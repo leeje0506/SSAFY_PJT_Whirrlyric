@@ -2,7 +2,7 @@ import { AxiosResponse } from "axios";
 import { defaultAxios } from "./AuthoCommon";
 
 const END_POINT = "oauth";
-const END_POINT_MEMBER = "members"
+// const END_POINT_MEMBER = "members"
 
 export const loginAPI = {
     getKakaoRedirect(): Promise<AxiosResponse>{
