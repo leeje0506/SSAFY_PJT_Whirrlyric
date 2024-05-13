@@ -1,7 +1,7 @@
 import { useNavigate, useLocation } from "react-router-dom";
 import { useEffect} from "react";
 import {loginAPI} from "../api/loginAPI.tsx";
-
+import loadingImage from "../assets/lodingImages/loading.gif"
 
 export default function KakaoRedirectPage(){
     const location = useLocation();
@@ -17,7 +17,7 @@ export default function KakaoRedirectPage(){
 
             //토큰 받아서 localstorage에 저장
             localStorage.setItem("accessToken", data.accessToken);
-            navigate("/write-song");  // 성공 시 리다이렉트할 경로
+            // navigate("/write-song");  // 성공 시 리다이렉트할 경로
         } catch (error) {
             console.error("로그인 실패", error);
             navigate("/");  // 실패 시 리다이렉트할 경로
@@ -34,8 +34,13 @@ export default function KakaoRedirectPage(){
     }, []);
 
     return (
-        <div>
-            <div>Processing...</div>
+        <div className="flex flex-col  my-20">
+            <div className="flex justify-center">
+                <img src={loadingImage} alt="loding" />
+            </div>
+            <div className="flex justify-center font-['Pretendard'] font-extrabold text-xl">
+                카카오 로그인 중
+            </div>
         </div>
 
     );
