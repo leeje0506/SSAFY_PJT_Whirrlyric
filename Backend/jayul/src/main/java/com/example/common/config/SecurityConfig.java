@@ -3,11 +3,13 @@ package com.example.common.config;
 import com.example.member.service.TokenService;
 import com.example.member.util.OauthServerTypeConverter;
 import java.util.Arrays;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.format.FormatterRegistry;
 import org.springframework.http.HttpMethod;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
@@ -22,7 +24,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @RequiredArgsConstructor
 @EnableWebSecurity(debug = true)
 public class SecurityConfig implements WebMvcConfigurer {
-    private final CorsConfig corsConfig;
+//    private final CorsConfig corsConfig;
     private final TokenService tokenService;
     private static final String[] PERMIT_URL_ARRAY = {
         // swagger v3
@@ -55,12 +57,31 @@ public class SecurityConfig implements WebMvcConfigurer {
                 .requestMatchers(PERMIT_URL_ARRAY).permitAll()
                 .anyRequest().authenticated()
             )
-            .cors(cors-> cors.configurationSource(corsConfig.corsConfigurationSource()))
+            .cors(Customizer.withDefaults())
             .addFilterBefore(new JwtAuthenticationFilter(tokenService),
                 UsernamePasswordAuthenticationFilter.class)
             .exceptionHandling(
                 e -> e.authenticationEntryPoint(new CustomAuthenticationEntryPoint()));
 
         return http.build();
+    }
+
+    @Bean
+    public CorsConfigurationSource corsConfigurationSource() {
+        CorsConfiguration configuration = new CorsConfiguration();
+
+        configuration.setAllowedOriginPatterns(
+            Arrays.asList("https://whirrlyric.n-e.kr", "http://localhost:3000"));
+        configuration.setAllowedMethods(
+            Arrays.asList("HEAD", "GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"));
+        configuration.setAllowedHeaders(List.of("*"));
+        configuration.setExposedHeaders(
+            Arrays.asList("Content-Type", "X-Requested-With", "Authorization"));
+        configuration.setAllowCredentials(true);
+        //configuration.setMaxAge(3600L); //1시간
+
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", configuration);
+        return source;
     }
 }
