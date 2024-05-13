@@ -66,6 +66,10 @@ public class SongServiceImpl implements SongService {
 
     @Override
     public SongResultDto createSong(SongRequestDto requestDto, Member member) {
+
+        // Member 객체를 현재 영속성 컨텍스트에 다시 연결
+        Member managedMember = memberService.merge(member);
+
         // 사용자 입력을 포맷에 맞게 조합
         String formattedLyrics = formatLyrics(requestDto);
         Genre genre = Genre.valueOf(requestDto.getGenre());
@@ -75,11 +79,11 @@ public class SongServiceImpl implements SongService {
         JSONObject songData = postCreateSong(apiRequest);
 
         // 노래 객체 생성 및 저장
-        Song song = buildSong(genre, songData, requestDto, member);
+        Song song = buildSong(genre, songData, requestDto, managedMember);
         songRepository.save(song);
 
         return new SongResultDto(song.getSongId(), song.getTitle(), song.getSongUrl(),
-            song.getImageUrl(), genre.getLabel(), formattedLyrics, member);
+            song.getImageUrl(), genre.getLabel(), formattedLyrics, managedMember);
     }
 
 
