@@ -40,6 +40,7 @@ public class OauthService extends DefaultOAuth2UserService {
 
         Member member = memberRepository.findByOauthId(dto.member().getOauthId())
             .orElseGet(() -> memberRepository.save(Member.builder()
+
                 .oauthId(new OauthId(dto.member().getOauthId().getOauthServerId(),
                     OauthServerType.KAKAO))
                 .nickname(createNickname())
@@ -57,6 +58,7 @@ public class OauthService extends DefaultOAuth2UserService {
         }
 
         return LoginDto.builder()
+            .memberId(member.getMemberId())
             .oauthId(member.getOauthId().getOauthServerId())
             .nickname(member.getNickname())
             .accessToken(tokenService.createToken(member))

@@ -4,7 +4,7 @@ import lombok.Builder;
 
 @Builder
 public record LoginDto(
-    String memberId,
+    Integer memberId,
     String oauthId,
     String nickname,
     String accessToken,
