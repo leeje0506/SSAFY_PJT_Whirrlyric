@@ -15,14 +15,14 @@ public class WebConfig implements WebMvcConfigurer {
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
-            .allowedOrigins("https://whirrlyric.n-e.kr")
-//			.allowedOrigins("https://localhost:3000")
-            .allowedOriginPatterns("*")
+            .allowedOrigins("https://whirrlyric.n-e.kr", "http://localhost:3000")
+//            .allowedOriginPatterns("*")
             .allowedMethods(
                 HttpMethod.GET.name(),
                 HttpMethod.POST.name(),
                 HttpMethod.PUT.name(),
-                HttpMethod.DELETE.name()
+                HttpMethod.DELETE.name(),
+                HttpMethod.OPTIONS.name()
             )
             .allowedHeaders("Content-Type", "Authorization") // Authorization 헤더 허용
             .allowCredentials(true)
