@@ -17,16 +17,16 @@ public class SwaggerConfig {
 	public OpenAPI openAPI() {
 		Info info = new Info()
 			.version("v1.0.0")
-			.title("API")
+			.title("휘리릭 API")
 			.description("");
 
-		String jwt = "JWT";
+		String jwt = "Authorization";
 		SecurityRequirement securityRequirement = new SecurityRequirement().addList(jwt); // 헤더에 토큰 포함
 		Components components = new Components().addSecuritySchemes(jwt, new SecurityScheme()
 			.name(jwt)
 			.type(SecurityScheme.Type.HTTP)
 			.scheme("bearer")
-			.bearerFormat("JWT")
+			.bearerFormat("Authorization")
 		);
 
 		Server deployServer = new Server();

@@ -1,19 +1,22 @@
 server:
   servlet:
     context-path: /api
-spring:
-  config:
-    import:
-      - application-datasource.yml
-      - application-secret.yml
+springdoc:
+  api-docs:
+    enabled: true
+    version: openapi_3_0
   swagger-ui:
-    path: /swagger-ui/index.html
     groups-order: DESC
     doc-expansion: none
     tags-sorter: alpha
     operationsSorter: method
     disable-swagger-default-url: true
     display-request-duration: true
+spring:
+  config:
+    import:
+      - application-datasource.yml
+      - application-secret.yml
   security:
     oauth2:
       client:
