@@ -40,11 +40,19 @@ public class MypageService {
 
         Mainsong mainSong = mainSongCustomRepository.findMainsongByMemberId(memberId);
 
-        SongResponse mainsongResponse = SongResponse
-            .builder()
-            .nickname(mainSong.getMember().getNickname())
-            .song(mainSong.getSong())
-            .build();
+
+        SongResponse mainsongResponse;
+
+        if(mainSong != null){
+            mainsongResponse = SongResponse
+                .builder()
+                .nickname(mainSong.getMember().getNickname())
+                .song(mainSong.getSong())
+                .build();
+        } else {
+            mainsongResponse = null;
+        }
+
 
         List<Song> songList = songCustomRepository.getMySongList(memberId);
 
