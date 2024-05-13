@@ -25,7 +25,7 @@ export default function Login() {
 
   return (
       <div className=" flex flex-col">
-        <div className="flex flex-col my-40">
+        <div className="flex flex-col my-30">
           <div className="flex justify-center">
             <img src={logo} className=""/>
 
@@ -39,7 +39,7 @@ export default function Login() {
 
           <div className="flex justify-center my-20">
             <button onClick={handleButtonClick}
-                    className="font-['Pretendard'] font-extrabold text-xl border-solid border-4 border-yellow-400 bg-yellow-400 text-black rounded-2xl w-full">
+                    className="font-['Pretendard'] font-extrabold text-xl border-solid border-4 border-yellow-400 bg-yellow-400 text-black rounded-2xl w-80">
               <div className="flex flex-row justify-center">
                 <div className="mr-3">
                   {kakaoIcon}</div>
