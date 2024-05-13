@@ -6,6 +6,7 @@ import MyPage from "../pages/MyPage";
 import WriteSong from "../pages/WriteSong";
 import PlaySong from "../pages/PlaySong";
 import ChangeName from "../pages/ChangeName";
+import KakaoRedirectPage from "../pages/KakaoRedirectPage.tsx";
 
 const routes = createBrowserRouter([
   {
@@ -35,6 +36,10 @@ const routes = createBrowserRouter([
       {
         path: "change-name",
         element: <ChangeName />,
+      },
+      {
+        path: `kakao-redirect`,
+        element: <KakaoRedirectPage/>
       },
     ],
   },

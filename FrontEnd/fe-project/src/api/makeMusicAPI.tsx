@@ -14,6 +14,8 @@ export const makeMusicAPI = {
       data: data,
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+
       },
     });
   },
@@ -23,6 +25,9 @@ export const makeMusicAPI = {
     return defaultAxios({
       method: "GET",
       url: `${END_POINT}/genres/data`,
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+      },
     });
   },
   // 가사 타입 조회
@@ -30,6 +35,9 @@ export const makeMusicAPI = {
     return defaultAxios({
       method: "GET",
       url: `${END_POINT}/lyrics/parts`,
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+      },
     });
   },
   // 가이드 조회
@@ -38,6 +46,9 @@ export const makeMusicAPI = {
       return defaultAxios({
         method: "GET",
         url: `${END_POINT}/lyrics/guide`,
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+        },
       });
     }
   },

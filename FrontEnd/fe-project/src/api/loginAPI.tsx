@@ -5,10 +5,10 @@ const END_POINT = "oauth";
 const END_POINT_MEMBER = "members"
 
 export const loginAPI = {
-    kakaoSingIn(): Promise<AxiosResponse>{
+    getKakaoRedirect(): Promise<AxiosResponse>{
         return defaultAxios({
-            method :"POST",
-            url: `${END_POINT_MEMBER}/signup`
+            method :"GET",
+            url: `${END_POINT}/kakao`,
         });
     },
 
@@ -23,6 +23,14 @@ export const loginAPI = {
         return defaultAxios({
             method: "POST",
             url: `${END_POINT}/logout/kakao`
+        })
+    },
+
+    // 토큰을 재발급 받는다
+    reissueToken(): Promise<AxiosResponse>{
+        return defaultAxios({
+            method: "POST",
+            url: `${END_POINT}/member/reissue`
         })
     }
 
