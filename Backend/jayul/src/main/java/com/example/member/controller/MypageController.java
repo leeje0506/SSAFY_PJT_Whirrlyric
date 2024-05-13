@@ -24,7 +24,7 @@ public class MypageController {
         summary = "닉네임 변경",
         description = "본인의 닉네임을 변경한다. (특수 문자 및 공백 제외 20글자 이내)"
     )
-    @PostMapping("/rename")
+    @PutMapping("/rename")
     public ResponseEntity<MemberEditDto> editNickname(
         @AuthenticationPrincipal Member member,
         @Valid @RequestBody MemberEditDto request
