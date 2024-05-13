@@ -17,7 +17,7 @@ export default function KakaoRedirectPage(){
 
             //토큰 받아서 localstorage에 저장
             localStorage.setItem("accessToken", data.accessToken);
-            // navigate("/write-song");  // 성공 시 리다이렉트할 경로
+            navigate("/write-song");  // 성공 시 리다이렉트할 경로
         } catch (error) {
             console.error("로그인 실패", error);
             navigate("/");  // 실패 시 리다이렉트할 경로
