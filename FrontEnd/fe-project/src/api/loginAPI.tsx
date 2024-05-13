@@ -22,7 +22,10 @@ export const loginAPI = {
     kakaoLogout(): Promise<AxiosResponse>{
         return defaultAxios({
             method: "POST",
-            url: `${END_POINT}/logout/kakao`
+            url: `${END_POINT}/logout/kakao`,
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+            },
         })
     },
 

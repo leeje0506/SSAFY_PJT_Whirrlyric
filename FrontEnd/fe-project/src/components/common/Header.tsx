@@ -23,20 +23,20 @@ export default function Header() {
   };
 
   return (
-    <div className="flex items-center justify-center w-full">
-      <div className="flex items-start fixed w-[430px] h-12 bg-gray-700">
-        <span className="pt-6 text-white ml-3">12 : 14</span>
-        <div className="flex-grow"></div>
-        <span className="flex pt-6 text-white mr-2 space-x-2">
+      <div className="flex items-center justify-center w-full">
+        <div className="flex items-start fixed w-[430px] h-12 bg-gray-700">
+          <span className="pt-6 text-white ml-3">12 : 14</span>
+          <div className="flex-grow"></div>
+          <span className="flex pt-6 text-white mr-2 space-x-2">
           {speakerIcon} {wifiIcon} {chartBarIcon} {batteryIcon}
         </span>
+        </div>
+        <div className="flex items-center justify-center fixed top-6 w-[430px] h-[80px] mx-auto px-4 bg-white border-b border-gray-200 font-['Pretendard'] font-extrabold text-2xl">
+          <button className="absolute left-8" onClick={() => navigate(-1)}>
+            {leftArrowIcon}
+          </button>
+          <h1 className="text-center">{getHeaderName(location.pathname)}</h1>
+        </div>
       </div>
-      <div className="flex items-center justify-center fixed top-6 w-[430px] h-[80px] mx-auto px-4 bg-white border-b border-gray-200">
-        <button className="absolute left-8" onClick={() => navigate(-1)}>
-          {leftArrowIcon}
-        </button>
-        <h1 className="text-center">{getHeaderName(location.pathname)}</h1>
-      </div>
-    </div>
   );
 }
