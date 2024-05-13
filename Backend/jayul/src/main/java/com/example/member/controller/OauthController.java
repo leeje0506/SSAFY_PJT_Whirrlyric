@@ -62,6 +62,7 @@ public class OauthController {
         response.addHeader("Set-Cookie", cookieValue);
         return ResponseEntity.ok(LoginResponse
             .builder()
+            .memberId(login.memberId())
             .oauthId(login.oauthId())
             .nickname(login.nickname())
             .accessToken(login.accessToken())
