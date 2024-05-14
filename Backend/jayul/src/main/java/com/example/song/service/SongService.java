@@ -26,4 +26,6 @@ public interface SongService {
     List<Map<String, Object>> getGenresData();
 
     LyricsGuideDto getLyricsGuide();
+
+    SongResponse songCountPlus(int id);
 }
