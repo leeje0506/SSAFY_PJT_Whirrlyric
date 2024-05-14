@@ -33,7 +33,6 @@ export default function MainPage() {
     const genreSongList = songList?.genreSongList;
     
     useEffect(() => {
-    console.log(localStorage.getItem("accessToken"));
     getSongList();
   }, []);
 

@@ -125,7 +125,6 @@ export default function WriteSong() {
 
   useEffect(() => {
     getGenreList();
-    console.log(localStorage.getItem("accessToken"));
   }, []);
 
   return (

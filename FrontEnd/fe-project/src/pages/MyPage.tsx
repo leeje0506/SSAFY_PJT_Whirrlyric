@@ -6,19 +6,36 @@ import { useEffect, useState } from "react";
 export default function MyPage() {
   const [user, setUser] = useState<MemberProfile | null>(null);
 
-  const getMypageInfo = async () => {
-    try {
-      const response = await mypageAPI.getMypageInfo(1);
-      setUser(response.data);
+  // const getMypageInfo = async () => {
+  //   try {
+  //     const response = await mypageAPI.getMypageInfo(1);
+  //     setUser(response.data);
 
-      console.log(response.data);
-    } catch (error) {
-      console.error(error);
-    }
-  };
+  //     console.log(response.data);
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // };
 
+  // useEffect(() => {
+  //   getMypageInfo();
+  // }, []);
+  
   useEffect(() => {
-    getMypageInfo();
+    const memberIdStr = localStorage.getItem("memberId");
+    if (memberIdStr) {
+      const curruntUser = parseInt(memberIdStr);
+      const getMypageInfo = async () => {
+        try {
+          const response = await mypageAPI.getMypageInfo(curruntUser);
+          setUser(response.data);
+          console.log(response.data);
+        } catch (error) {
+          console.error(error);
+        }
+      };
+      getMypageInfo();
+    }
   }, []);
 
   return (
