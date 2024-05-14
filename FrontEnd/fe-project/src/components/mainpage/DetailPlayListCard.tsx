@@ -18,7 +18,7 @@ export default function DetailPlayListCard({songWithCreator, rank}:DetailPlayLis
     >
       <h1 className="flex flex-col justify-center mx-2">{rank}</h1>
       <img
-        src={songWithCreator.song.imageUrl || altDiscImg}
+        src={songWithCreator.song.imageUrl ? `https://${songWithCreator.song.imageUrl}` : altDiscImg}
         className="w-12 h-12 border-2 border-gray-400 rounded-xl mx-2"
       />
       <div className="flex-col w-40 mx-2">

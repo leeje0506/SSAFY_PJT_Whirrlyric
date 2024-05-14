@@ -33,7 +33,7 @@ export default function PlaySong() {
       <div>
         <div className="flex flex-col items-center">
           <img
-            src={songInfo.song.imageUrl || altDiscImg}
+            src={songInfo.song.imageUrl ? `https://${songInfo.song.imageUrl}` : altDiscImg}
             className="w-80 h-80 mb-4 border-2 border-gray-400 rounded-xl"
           />
         </div>

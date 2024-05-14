@@ -1,17 +1,20 @@
 import { useState } from "react";
 import Button from "../components/common/Button";
 import { mypageAPI } from "../api/mypageAPI";
+import { useNavigate } from "react-router-dom";
 
 export default function ChangeName() {
+  const navigate = useNavigate();
   const [nickname, setNickname] = useState("");
 
   const ChangeName = async (nickname: string) => {
     try {
       const response = await mypageAPI.changeName(nickname);
+      navigate("/mypage");
 
       console.log(response);
     } catch (error) {
-      alert("주의 사항을 확인해 주세요.")
+      alert("불가능한 닉네임 입니다.")
       console.error(error);
     }
   };
