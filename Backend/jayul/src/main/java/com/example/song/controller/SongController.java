@@ -76,4 +76,9 @@ public class SongController {
         return ResponseEntity.ok(genresData);
     }
 
+    @PatchMapping("/{id}/play")
+    public ResponseEntity<?> songCountPlus(@PathVariable int id){
+        return ResponseEntity.ok(songService.songCountPlus(id));
+    }
+
 }

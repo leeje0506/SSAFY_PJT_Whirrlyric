@@ -116,6 +116,20 @@ public class SongServiceImpl implements SongService {
         return new LyricsGuideDto("이것은 사용법에 대한 가이드라인입니다.");
     }
 
+    @Override
+    public SongResponse songCountPlus(int id) {
+        Song song = songRepository.findById(id).orElseThrow(SongNotFoundException::new);
+
+        song.updatePlayCount();
+
+        Song updatedSong = songRepository.save(song);
+
+        return SongResponse.builder()
+            .song(updatedSong)
+            .nickname(updatedSong.getMember().getNickname())
+            .build();
+    }
+
 
     private Map<String, Object> prepareApiRequest(SongRequestDto requestDto, Genre genre,
         String formattedLyrics) {
