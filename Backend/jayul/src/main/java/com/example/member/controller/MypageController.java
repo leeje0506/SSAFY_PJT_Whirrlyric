@@ -48,8 +48,8 @@ public class MypageController {
 
     @GetMapping("/{id}")
     public ResponseEntity<?> getMemberProfile(@PathVariable int id){
-        System.out.println("마이페이지 GET");
         MypageProfileResponse response = myPageService.getMemberProfile(id);
+
         return ResponseEntity.ok(response);
     }
 

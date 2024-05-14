@@ -21,14 +21,14 @@ public class SongController {
     private final SongService songService;
 
     @GetMapping("/{id}")
-    public ResponseEntity<?> getSongDetail(@PathVariable int id, @AuthenticationPrincipal Member member){
+    public ResponseEntity<?> getSongDetail(@PathVariable int id){
         SongResponse response = songService.getSongDetail(id);
 
         return ResponseEntity.ok(response);
     }
 
     @GetMapping("/list")
-    public ResponseEntity<?> getSongList(@AuthenticationPrincipal Member member){
+    public ResponseEntity<?> getSongList(){
         SongListResponse response = songService.getSongList();
 
         return ResponseEntity.ok(response);
