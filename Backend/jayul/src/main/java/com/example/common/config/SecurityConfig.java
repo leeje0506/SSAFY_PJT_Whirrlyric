@@ -24,7 +24,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @RequiredArgsConstructor
 @EnableWebSecurity(debug = true)
 public class SecurityConfig implements WebMvcConfigurer {
-//    private final CorsConfig corsConfig;
+
     private final TokenService tokenService;
     private static final String[] PERMIT_URL_ARRAY = {
         // swagger v3
@@ -78,10 +78,10 @@ public class SecurityConfig implements WebMvcConfigurer {
         configuration.setExposedHeaders(
             Arrays.asList("Content-Type", "X-Requested-With", "Authorization"));
         configuration.setAllowCredentials(true);
-        //configuration.setMaxAge(3600L); //1시간
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);
+
         return source;
     }
 }

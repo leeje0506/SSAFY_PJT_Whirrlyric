@@ -1,6 +1,7 @@
 package com.example.common.exception;
 
-import lombok.*;
+import lombok.Builder;
+import lombok.Getter;
 
 @Getter
 @Builder

@@ -1,12 +1,10 @@
 package com.example.member.domain.authCode;
 
-import org.springframework.stereotype.Component;
-import org.springframework.web.util.UriComponentsBuilder;
-
 import com.example.common.config.KakaoOauthConfig;
 import com.example.member.domain.type.OauthServerType;
-
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Component;
+import org.springframework.web.util.UriComponentsBuilder;
 
 @Component
 @RequiredArgsConstructor

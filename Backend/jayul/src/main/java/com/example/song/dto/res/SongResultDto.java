@@ -9,7 +9,6 @@ package com.example.song.dto.res;
  * */
 
 import com.example.member.domain.Member;
-import jakarta.persistence.criteria.CriteriaBuilder.In;
 import lombok.*;
 
 @ToString

@@ -1,10 +1,8 @@
 package com.example.song.controller;
 
 
-import com.example.member.domain.Member;
-import com.example.song.dto.res.SongListResponse;
-import com.example.song.dto.res.SongResponse;
 import com.example.common.enums.Genre;
+import com.example.member.domain.Member;
 import com.example.song.dto.req.SongRequestDto;
 import com.example.song.dto.res.*;
 import com.example.song.service.SongService;

@@ -1,7 +1,6 @@
 package com.example.member.dto.res;
 
 import com.example.member.domain.Member;
-
 import lombok.Builder;
 
 @Builder

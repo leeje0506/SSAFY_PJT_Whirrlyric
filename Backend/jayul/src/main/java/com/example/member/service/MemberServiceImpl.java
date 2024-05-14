@@ -2,7 +2,6 @@ package com.example.member.service;
 
 import com.example.member.domain.Member;
 import com.example.member.repository.MemberRepository;
-
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import java.util.Objects;
