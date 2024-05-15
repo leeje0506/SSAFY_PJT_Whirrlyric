@@ -20,7 +20,7 @@ export default function MyPage() {
   // useEffect(() => {
   //   getMypageInfo();
   // }, []);
-  
+
   useEffect(() => {
     const memberIdStr = localStorage.getItem("memberId");
     if (memberIdStr) {
