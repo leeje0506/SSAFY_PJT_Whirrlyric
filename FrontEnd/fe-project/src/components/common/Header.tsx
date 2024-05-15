@@ -10,20 +10,23 @@ export default function Header() {
   const navigate = useNavigate();
 
   const getHeaderName = (pathname: string) => {
+    if (pathname.startsWith("/play-song")) {
+      return "Play Song";
+    }
     switch (pathname) {
       case "/write-song":
         return "Write a Song";
-      case "/play-song":
-        return "Play Song";
       case "/mypage":
         return "My Page";
       case "/change-name":
         return "닉네임 수정";
+      case "/main":
+        return "WhirrLyric";
     }
   };
 
   return (
-      <div className="flex items-center justify-center w-full">
+      <div className="flex items-center justify-center w-full fixed z-50">
         <div className="flex items-start fixed w-[430px] h-12 bg-gray-700">
           <span className="pt-6 text-white ml-3">12 : 14</span>
           <div className="flex-grow"></div>

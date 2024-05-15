@@ -34,6 +34,10 @@ const routes = createBrowserRouter([
         element: <MyPage />,
       },
       {
+        path: "mypage/:memberId",
+        element: <MyPage />,
+      },
+      {
         path: "change-name",
         element: <ChangeName />,
       },

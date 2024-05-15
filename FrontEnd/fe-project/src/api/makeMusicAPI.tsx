@@ -1,5 +1,5 @@
 import { AxiosResponse } from "axios";
-import { defaultAxios } from "./AuthCommon";
+import { authAxios } from "./AuthCommon";
 
 const END_POINT = "songs";
 
@@ -9,47 +9,32 @@ export const makeMusicAPI = {
     console.log(localStorage.getItem("accessToken"));
     console.log("creating music");
     console.log(data);
-    return defaultAxios({
+    return authAxios({
       method: "POST",
       url: `${END_POINT}`,
       data: data,
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
-
-      },
     });
   },
-
   // 장르 조회
   getGenreList(): Promise<AxiosResponse> {
-    return defaultAxios({
+    return authAxios({
       method: "GET",
       url: `${END_POINT}/genres/data`,
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
-      },
     });
   },
   // 가사 타입 조회
   getLyricsList(): Promise<AxiosResponse> {
-    return defaultAxios({
+    return authAxios({
       method: "GET",
       url: `${END_POINT}/lyrics/parts`,
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
-      },
     });
   },
   // 가이드 조회
   getGuide(): Promise<AxiosResponse> {
     {
-      return defaultAxios({
+      return authAxios({
         method: "GET",
         url: `${END_POINT}/lyrics/guide`,
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
-        },
       });
     }
   },

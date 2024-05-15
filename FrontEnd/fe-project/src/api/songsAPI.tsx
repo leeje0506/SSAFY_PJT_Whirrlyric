@@ -1,5 +1,5 @@
 import { AxiosResponse } from "axios";
-import { authAxios } from "./AuthCommon";
+import { authAxios, defaultAxios } from "./AuthCommon";
 
 const END_POINT = "songs";
 
@@ -19,10 +19,17 @@ export const songsAPI = {
   },
 
   downloadSong(downloadUrl: string): Promise<AxiosResponse> {
-    return authAxios({
+    return defaultAxios({
       method: "GET",
       url: downloadUrl,
       responseType: "blob",
+    });
+  },
+
+  countSongPlay(songId: number): Promise<AxiosResponse> {
+    return authAxios({
+      method: "POST",
+      url: `${END_POINT}/${songId}/play`,
     });
   },
 };

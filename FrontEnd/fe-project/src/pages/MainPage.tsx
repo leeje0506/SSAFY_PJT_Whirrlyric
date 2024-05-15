@@ -12,34 +12,34 @@ export default function MainPage() {
     try {
       const response = await songsAPI.getSongList();
       setSongList(response.data);
-      
+
       console.log(response);
     } catch (error) {
       console.error(error);
     }
   };
-  
-  const popularListSize = 5;
+
+  const popularListSize = 4;
   const popularSongList = songList
-  ? (Array.from({ length: 3 }, (_, index) =>
-  songList.popularSongList.slice(
-    index * popularListSize,
-    (index + 1) * popularListSize
-    )
-    ) as [SongWithCreator[]])
+    ? (Array.from({ length: 3 }, (_, index) =>
+        songList.popularSongList.slice(
+          index * popularListSize,
+          (index + 1) * popularListSize
+        )
+      ) as [SongWithCreator[]])
     : null;
-    
-    const latestSongList = songList?.latestSongList;
-    const genreSongList = songList?.genreSongList;
-    
-    useEffect(() => {
+
+  const latestSongList = songList?.latestSongList;
+  const genreSongList = songList?.genreSongList;
+
+  useEffect(() => {
     getSongList();
   }, []);
 
   return (
     <>
       <Carousel
-        className="rounded-xl"
+        className=""
         placeholder={undefined}
         onPointerEnterCapture={undefined}
         onPointerLeaveCapture={undefined}
@@ -48,18 +48,19 @@ export default function MainPage() {
           popularSongList.map((songs, index) => (
             <div
               key={index}
-              className="flex flex-col items-center relative h-full w-full bg-gray-200"
+              className="flex flex-col rounded-xl items-center relative h-full w-96 bg-gray-400 mx-auto"
             >
-              <h1>{`인기곡 ${index + 1}`}</h1>
+              <h1 className="mt-3 mb-5">{`인기곡 ${index + 1}`}</h1>
               <div>
                 {songs.map((song, i) => (
                   <DetailPlayListCard
                     key={song.song.songId}
-                    rank={index * 5 + i + 1}
+                    rank={index * 4 + i + 1}
                     songWithCreator={song}
                   />
                 ))}
               </div>
+              <div className="mt-10"></div>
             </div>
           ))
         ) : (
@@ -69,8 +70,8 @@ export default function MainPage() {
         )}
       </Carousel>
 
-      <h1>Latest</h1>
-      <DragScrollContainer addClass="mt-8 w-[400px]">
+      <h1 className="mt-4 mb-2 ml-4">Latest</h1>
+      <DragScrollContainer addClass="w-[400px] mx-auto">
         <div className="flex">
           {latestSongList?.map((song) => (
             <AlbumCard key={song.song.songId} songWithCreator={song} />
@@ -79,16 +80,16 @@ export default function MainPage() {
       </DragScrollContainer>
 
       {genreSongList?.map((songListWithGenre) => (
-        <>
-          <h1>{songListWithGenre.genre}</h1>
-          <DragScrollContainer addClass="mt-8 w-[400px]">
+        <div key={songListWithGenre.genre}>
+          <h1 className="mt-4 mb-2 ml-4">{songListWithGenre.genre}</h1>
+          <DragScrollContainer addClass="w-[400px] mx-auto">
             <div className="flex">
               {songListWithGenre.songList.map((song) => (
                 <AlbumCard key={song.song.songId} songWithCreator={song} />
               ))}
             </div>
           </DragScrollContainer>
-        </>
+        </div>
       ))}
     </>
   );

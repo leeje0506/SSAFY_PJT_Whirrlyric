@@ -38,13 +38,14 @@ export default function PlaySong() {
           />
         </div>
         <MusicPlayer
+          songId={songInfo.song.songId}
           title={songInfo.song.title}
           songUrl={songInfo.song.songUrl}
         />
-        <div className="mx-8">
+        <div className="mx-8 mt-5">
           <h1>{songInfo.song.title}</h1>
           <p>{songInfo.nickname}</p>
-          <h1>Lyrics</h1>
+          <h1 className="mt-3">Lyrics</h1>
           <p>{songInfo.song.lyrics}</p>
         </div>
       </div>
