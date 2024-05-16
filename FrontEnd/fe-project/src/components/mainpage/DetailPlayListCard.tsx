@@ -24,8 +24,8 @@ export default function DetailPlayListCard({songWithCreator, rank}:DetailPlayLis
         className="w-12 h-12 border-2 border-gray-200 rounded-xl mx-2"
       />
       <div className="flex-col w-40 mx-2">
-        <h1>{songWithCreator.song.title}</h1>
-        <p>{songWithCreator.nickname}</p>
+        <h1 className="overflow-hidden overflow-ellipsis whitespace-nowrap max-w-full">{songWithCreator.song.title}</h1>
+        <p className="overflow-hidden overflow-ellipsis whitespace-nowrap max-w-full">{songWithCreator.nickname}</p>
       </div>
 
       <h1 className="flex flex-col justify-center mx-2">{songWithCreator.song.playCount}</h1>
