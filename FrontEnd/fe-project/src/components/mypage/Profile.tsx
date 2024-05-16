@@ -57,7 +57,7 @@ export default function Profile({ user, isMypage }: ProfileProps) {
     <>
       <div className="flex items-center w-[356px] h-[117px] mx-auto">
         <img
-          src={`ImageUrl${user.imageUrl}.png`|| altUserImg}
+          src={`ImageUrl${user.imageUrl}`|| altUserImg}
           className="w-28 h-28 rounded-full bg-gray-200 border-gray-400 border-2"
         />
         <div className="ml-6 flex-col">
