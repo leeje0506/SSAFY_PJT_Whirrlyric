@@ -21,6 +21,11 @@ interface createMusicForm {
   genre: string;
 }
 
+interface guideItem{
+  name : string,
+  description : string,
+}
+
 // interface LyricsList{
 //     lyricsList: lyrics[]
 // }
