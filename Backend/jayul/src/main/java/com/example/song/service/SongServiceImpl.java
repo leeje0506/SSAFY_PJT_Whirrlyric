@@ -114,7 +114,27 @@ public class SongServiceImpl implements SongService {
 
     @Override
     public LyricsGuideDto getLyricsGuide() {
-        return new LyricsGuideDto("이것은 사용법에 대한 가이드라인입니다.");
+        return new LyricsGuideDto( "[Intro]\n" +
+            "곡의 도입부 부분입니다.\n" +
+            "음악의 전체적인 분위기를 선보일 수 있습니다.\n" +
+            "\n" +
+            "[Verse]\n" +
+            "노래가 시작되는 부분입니다.\n" +
+            "1절, 2절이라고도 부릅니다.\n" +
+            "\n" +
+            "[Chorus]\n" +
+            "곡의 후렴구 부분입니다\n" +
+            "가장 핵심이 되는 부분입니다.\n" +
+            "\n" +
+            "[Bridge]\n" +
+            "Verse 와 Chorus를 연결하는 역할을 합니다.\n" +
+            "Chorus 와 Chorus를 연결할 수도 있습니다.\n" +
+            "\n" +
+            "[Outro]\n" +
+            "곡의 마무리 부분입니다.\n" +
+            "\n" +
+            "각 요소가 하나의 음악으로 조화롭게 어우러지는 것이 중요합니다.\n" +
+            "자, 이제 자신 만의 음악을 만들어보세요!");
     }
 
     @Override
