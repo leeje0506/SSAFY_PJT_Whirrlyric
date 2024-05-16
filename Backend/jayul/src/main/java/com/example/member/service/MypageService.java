@@ -40,7 +40,6 @@ public class MypageService {
 
         Mainsong mainSong = mainSongCustomRepository.findMainsongByMemberId(memberId);
 
-
         SongResponse mainsongResponse;
 
         if(mainSong != null){
@@ -48,6 +47,7 @@ public class MypageService {
                 .builder()
                 .nickname(mainSong.getMember().getNickname())
                 .song(mainSong.getSong())
+                .memberId(mainSong.getMember().getMemberId())
                 .build();
         } else {
             mainsongResponse = null;
@@ -60,6 +60,7 @@ public class MypageService {
             .map(song -> SongResponse.builder()
                 .song(song)
                 .nickname(song.getMember() != null ? song.getMember().getNickname() : null)
+                .memberId(song.getMember() != null ?  song.getMember().getMemberId() : null)
                 .build())
             .toList();
 
