@@ -14,10 +14,8 @@ import ImageUrl7 from "../../assets/profileImage/profile7.png";
 import ImageUrl8 from "../../assets/profileImage/profile8.png";
 import ImageUrl9 from "../../assets/profileImage/profile9.png";
 import ImageUrl10 from "../../assets/profileImage/profile10.png";
-import {useState} from "react";
+import { useState } from "react";
 // import getImageUrl from "./getImageUrl.tsx";
-
-
 
 interface ProfileProps {
   user: MemberProfile;
@@ -43,7 +41,10 @@ export default function Profile({ user, isMypage }: ProfileProps) {
 
   const changeMainSong = async (selectedSongId: number) => {
     try {
-      const response = await mypageAPI.changeMyMainSong(user.nickname, selectedSongId);
+      const response = await mypageAPI.changeMyMainSong(
+        user.nickname,
+        selectedSongId
+      );
 
       console.log(selectedSongId);
 
@@ -118,11 +119,12 @@ export default function Profile({ user, isMypage }: ProfileProps) {
             </select>
           </form>
         </div>
-
       </div>
-      <div className="flex justify-end mr-8">
-        <KakaoLogout/>
-      </div>
+      {isMypage && (
+        <div className="flex justify-end mr-8">
+          <KakaoLogout />
+        </div>
+      )}
       <hr className="mt-6 border-black" />
     </>
   );
