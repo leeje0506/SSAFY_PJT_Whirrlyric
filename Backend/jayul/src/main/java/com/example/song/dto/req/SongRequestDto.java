@@ -28,7 +28,7 @@ public class SongRequestDto {
     @Override
     public String toString() {
         return String.format(
-            "[INTRO]\n%s\n[VERSE1]\n%s\n[VERSE2]\n%s\n[CHORUS]\n%s\n[BRIDGE]\n%s\n[OUTRO]\n%s",
+            "[INTRO]%n%s%n[VERSE1]%n%s%n[VERSE2]%n%s%n[CHORUS]%n%s%n[BRIDGE]%n%s%n[OUTRO]%n%s",
 
             this.intro,
             this.verse1,
