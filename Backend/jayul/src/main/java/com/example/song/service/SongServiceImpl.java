@@ -114,15 +114,16 @@ public class SongServiceImpl implements SongService {
 
     @Override
     public LyricsGuideDto getLyricsGuide() {
-        // LyricsGuideDto 객체 생성 및 필드 설정
+// LyricsGuideDto 객체 생성 및 필드 설정
         return LyricsGuideDto.builder()
-            .intro("[Intro] \n곡의 도입부 부분입니다.\n음악의 전체적인 분위기를 선보일 수 있습니다.")
-            .verse("[Verse] \n노래가 시작되는 부분입니다.\n1절, 2절이라고도 부릅니다.")
-            .chorus("[Chorus] \n곡의 후렴구 부분입니다\n가장 핵심이 되는 부분입니다.")
-            .bridge("[Bridge] \nVerse 와 Chorus를 연결하는 역할을 합니다.\nChorus 와 Chorus를 연결할 수도 있습니다.")
-            .outro("[Outro] \n곡의 마무리 부분입니다.")
+            .intro("곡의 도입부 부분입니다. %n음악의 전체적인 분위기를 선보일 수 있습니다.")
+            .verse("노래가 시작되는 부분입니다.\n1절, 2절이라고도 부릅니다.")
+            .chorus("곡의 후렴구 부분입니다\n가장 핵심이 되는 부분입니다.")
+            .bridge("Verse 와 Chorus를 연결하는 역할을 합니다.\nChorus 와 Chorus를 연결할 수도 있습니다.")
+            .outro("곡의 마무리 부분입니다.")
             .closingRemark("각 요소가 하나의 음악으로 조화롭게 어우러지는 것이 중요합니다.\n자, 이제 자신 만의 음악을 만들어보세요!")
             .build();
+
     }
 
     @Override
