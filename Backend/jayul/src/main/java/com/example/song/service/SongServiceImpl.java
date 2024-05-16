@@ -195,7 +195,7 @@ public class SongServiceImpl implements SongService {
 
     private String formatLyrics(SongRequestDto requestDto) {
         return String.format(
-            "[INTRO]\n%s\n[VERSE1]\n%s\n[VERSE2]\n%s\n[CHORUS]\n%s\n[BRIDGE]\n%s\n[OUTRO]\n%s",
+            "[INTRO]%n%s%n[VERSE1]%n%s%n[VERSE2]%n%s%n[CHORUS]%n%s%n[BRIDGE]%n%s%n[OUTRO]%n%s",
             requestDto.getIntro(), requestDto.getVerse1(), requestDto.getVerse2(),
             requestDto.getChorus(), requestDto.getBridge(), requestDto.getOutro());
     }
