@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 import { songsAPI } from "../api/songsAPI";
 import altDiscImg from "../assets/altImages/altDiscImg.png";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import MusicPlayer from "../components/playsong/MusicPlayer";
 
 export default function PlaySong() {
+  const navigate = useNavigate();
   const { songId } = useParams();
 
   const [songInfo, setSongInfo] = useState<SongWithCreator | null>(null);
@@ -19,6 +20,11 @@ export default function PlaySong() {
       console.error(error);
     }
   };
+
+  const handleNicknameClick = () => {
+    if (songInfo)
+    navigate(`/mypage/${songInfo.memberId}`);
+  }
 
   useEffect(() => {
     const id = songId ? parseInt(songId) : null;
@@ -44,7 +50,7 @@ export default function PlaySong() {
         />
         <div className="mx-8 mt-5">
           <h1>{songInfo.song.title}</h1>
-          <p>{songInfo.nickname}</p>
+          <p onClick={handleNicknameClick} className="text-gray-500 hover:underline hover:font-bold cursor-pointer">{songInfo.nickname}</p>
           <h1 className="mt-3">Lyrics</h1>
           <p>{songInfo.song.lyrics}</p>
         </div>

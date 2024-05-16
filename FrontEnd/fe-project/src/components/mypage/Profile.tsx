@@ -7,15 +7,16 @@ import KakaoLogout from "../common/KakaoLogout.tsx";
 
 interface ProfileProps {
   user: MemberProfile;
+  isMypage: boolean;
 }
 
-export default function Profile({ user }: ProfileProps) {
+export default function Profile({ user, isMypage }: ProfileProps) {
   const navigate = useNavigate();
 
 
   const changeMainSong = async (selectedSongId: number) => {
     try {
-      const response = await mypageAPI.changeMyMainSong(selectedSongId);
+      const response = await mypageAPI.changeMyMainSong(user.nickname, selectedSongId);
 
       console.log(selectedSongId);
       console.log(response);
@@ -39,9 +40,11 @@ export default function Profile({ user }: ProfileProps) {
         <div className="ml-6 flex-col">
           <div className="flex">
             <h1>{user.nickname}</h1>
-            <button className="ml-2" onClick={() => navigate("/change-name")}>
-              {pencilIcon}
-            </button>
+            {isMypage && (
+              <button className="ml-2" onClick={() => navigate("/change-name")}>
+                {pencilIcon}
+              </button>
+            )}
           </div>
 
           <form className="max-w-sm mx-auto">
@@ -56,6 +59,7 @@ export default function Profile({ user }: ProfileProps) {
               defaultValue={user.mainSong?.song.songId || ""}
               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               onChange={onTitleChange}
+              disabled={!isMypage}
             >
               <option value="" disabled>
                 Choose a song
