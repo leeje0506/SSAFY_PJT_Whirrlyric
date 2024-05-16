@@ -18,7 +18,7 @@ export default function KakaoLogout() {
     return (
 
         <div>
-            <button onClick={kakaoLogout} className="text-black font-['Pretendard'] font-extrabold text-xl bg-yellow-400">카카오 로그아웃</button>
+            <button onClick={kakaoLogout} className="text-gray-500 font-['Pretendard'] font-extrabold text-sm ">로그아웃</button>
         </div>
 
 
