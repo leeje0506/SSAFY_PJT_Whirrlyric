@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { makeMusicAPI } from "../api/makeMusicAPI.tsx";
 import LyricsItem from "../components/makesongpage/LyricsItem.tsx";
 import { useEffect, useState } from "react";
+import GuidelineItem from "../components/makesongpage/GuidelineItem.tsx";
 
 export default function WriteSong() {
   const navigate = useNavigate();
@@ -10,7 +11,7 @@ export default function WriteSong() {
 
   const [genreList, setGenreList] = useState<genre[] | null>(null);
 
-  const [guide, setGuide] = useState<string>();
+  const [guideList, setGuide] = useState<guideItem[]>();
 
   const [modalVisible, setModalVisible] = useState(false); // 상태 추가
 
@@ -110,8 +111,8 @@ export default function WriteSong() {
 
   const clickGuide = async () => {
     const response = await makeMusicAPI.getGuide();
-    console.log(response.data.description);
-    setGuide(response.data.description);
+    console.log("가이드!!!!" + response.data.intro);
+    setGuide(response.data);
     setModalVisible(true);
   };
 
@@ -186,7 +187,14 @@ export default function WriteSong() {
                 {/*// <!-- Modal body -->*/}
                 <div className="p-4 md:p-5 space-y-4">
                   <p className="text-base leading-relaxed text-gray-500 dark:text-gray-400 font-['Pretendard'] font-medium">
-                    {guide}
+                    {guideList ? (
+                        guideList.map((guide) => (
+                            <GuidelineItem key={guide.name} guide={guide} />
+                        ))
+                    ) : (
+                        <div className="text-lg">No GUIDE</div>
+                    )}
+
                   </p>
                 </div>
                 {/*// <!-- Modal footer -->*/}
