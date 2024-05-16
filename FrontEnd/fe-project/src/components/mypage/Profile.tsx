@@ -15,7 +15,7 @@ import ImageUrl8 from "../../assets/profileImage/profile8.png";
 import ImageUrl9 from "../../assets/profileImage/profile9.png";
 import ImageUrl10 from "../../assets/profileImage/profile10.png";
 import {useState} from "react";
-import getImageUrl from "./getImageUrl.tsx";
+// import getImageUrl from "./getImageUrl.tsx";
 
 
 
