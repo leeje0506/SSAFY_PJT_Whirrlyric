@@ -61,8 +61,8 @@ public class SongController {
 
     //가이드 라인 가져오기
     @GetMapping("/lyrics/guide")
-    public ResponseEntity<LyricsGuideDto> getLyricsGuide(@AuthenticationPrincipal Member member) {
-        LyricsGuideDto guide = songService.getLyricsGuide();
+    public ResponseEntity<List<Map<String, Object>>> getLyricsGuide(@AuthenticationPrincipal Member member) {
+        List<Map<String, Object>> guide = songService.getLyricsGuide();
         return ResponseEntity.ok(guide);
     }
 

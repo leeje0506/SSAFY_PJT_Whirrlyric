@@ -113,17 +113,22 @@ public class SongServiceImpl implements SongService {
     }
 
     @Override
-    public LyricsGuideDto getLyricsGuide() {
-// LyricsGuideDto 객체 생성 및 필드 설정
-        return LyricsGuideDto.builder()
-            .intro("곡의 도입부 부분입니다. %n음악의 전체적인 분위기를 선보일 수 있습니다.")
-            .verse("노래가 시작되는 부분입니다.\n1절, 2절이라고도 부릅니다.")
-            .chorus("곡의 후렴구 부분입니다\n가장 핵심이 되는 부분입니다.")
-            .bridge("Verse 와 Chorus를 연결하는 역할을 합니다.\nChorus 와 Chorus를 연결할 수도 있습니다.")
-            .outro("곡의 마무리 부분입니다.")
-            .closingRemark("각 요소가 하나의 음악으로 조화롭게 어우러지는 것이 중요합니다.\n자, 이제 자신 만의 음악을 만들어보세요!")
-            .build();
+    public List<Map<String, Object>> getLyricsGuide() {
+        List<Map<String, Object>> guideList = new ArrayList<>();
+        guideList.add(createGuidePart("Intro", "곡의 도입부 부분입니다. 음악의 전체적인 분위기를 선보일 수 있습니다."));
+        guideList.add(createGuidePart("Verse", "노래가 시작되는 부분입니다. 1절, 2절이라고도 부릅니다."));
+        guideList.add(createGuidePart("Chorus", "곡의 후렴구 부분입니다. 가장 핵심이 되는 부분입니다."));
+        guideList.add(createGuidePart("Bridge", "Verse 와 Chorus를 연결하는 역할을 합니다. Chorus 와 Chorus를 연결할 수도 있습니다."));
+        guideList.add(createGuidePart("Outro", "곡의 마무리 부분입니다."));
+        guideList.add(createGuidePart("Closing Remark", "각 요소가 하나의 음악으로 조화롭게 어우러지는 것이 중요합니다. 자, 이제 자신 만의 음악을 만들어보세요!"));
+        return guideList;
+    }
 
+    private Map<String, Object> createGuidePart(String name, String description) {
+        Map<String, Object> guidePart = new HashMap<>();
+        guidePart.put("name", name);
+        guidePart.put("description", description);
+        return guidePart;
     }
 
     @Override
