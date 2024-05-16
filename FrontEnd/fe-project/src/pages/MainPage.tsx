@@ -72,7 +72,7 @@ export default function MainPage() {
         </Carousel>
       )}
 
-      {latestSongList && (
+      {latestSongList?.length !== 0 && (
         <>
           <h1 className="mt-4 mb-2 ml-4">Latest</h1>
           <DragScrollContainer addClass="w-[400px] mx-auto">
@@ -87,7 +87,7 @@ export default function MainPage() {
 
       {genreSongList?.map((songListWithGenre) => (
         <div key={songListWithGenre.genre}>
-          {songListWithGenre.songList && (
+          {songListWithGenre.songList?.length !== 0 && (
             <>
               <h1 className="mt-4 mb-2 ml-4">{songListWithGenre.genre}</h1>
               <DragScrollContainer addClass="w-[400px] mx-auto">
