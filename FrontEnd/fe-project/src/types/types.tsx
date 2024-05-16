@@ -19,7 +19,7 @@ interface SongWithCreator {
 
 interface MemberProfile {
   nickname: string;
-  imageUrl: string;
+  imageUrl: number;
   mainSong: SongWithCreator | null;
   songList: SongWithCreator[] | null;
 }
