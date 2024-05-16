@@ -9,4 +9,5 @@ import lombok.*;
 public class SongResponse {
     private Song song;
     private String nickname;
+    private Integer memberId;
 }

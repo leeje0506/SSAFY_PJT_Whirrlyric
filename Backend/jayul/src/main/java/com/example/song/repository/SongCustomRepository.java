@@ -39,7 +39,7 @@ public class SongCustomRepository {
             .fetch();
 
         return songs.stream()
-            .map(s -> new SongResponse(s, s.getMember() != null ? s.getMember().getNickname() : null))
+            .map(s -> new SongResponse(s, s.getMember() != null ? s.getMember().getNickname() : null, s.getMember() != null ? s.getMember().getMemberId() : null))
             .collect(Collectors.toList());
     }
 
@@ -51,7 +51,7 @@ public class SongCustomRepository {
             .fetch();
 
         return songs.stream()
-            .map(s -> new SongResponse(s, s.getMember() != null ? s.getMember().getNickname() : null))
+            .map(s -> new SongResponse(s, s.getMember() != null ? s.getMember().getNickname() : null, s.getMember() != null ? s.getMember().getMemberId() : null))
             .collect(Collectors.toList());
     }
 
@@ -63,7 +63,7 @@ public class SongCustomRepository {
             .fetch();
 
         return songs.stream()
-            .map(s -> new SongResponse(s, s.getMember() != null ? s.getMember().getNickname() : null))
+            .map(s -> new SongResponse(s, s.getMember() != null ? s.getMember().getNickname() : null, s.getMember() != null ? s.getMember().getMemberId() : null))
             .collect(Collectors.toList());
     }
 }

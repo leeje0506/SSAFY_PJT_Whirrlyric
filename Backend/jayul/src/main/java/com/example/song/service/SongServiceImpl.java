@@ -33,6 +33,7 @@ public class SongServiceImpl implements SongService {
         return SongResponse.builder()
             .song(song)
             .nickname(song.getMember().getNickname())
+            .memberId(song.getMember().getMemberId())
             .build();
     }
 
