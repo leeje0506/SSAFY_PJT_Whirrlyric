@@ -52,7 +52,7 @@ export default function PlaySong() {
           <h1>{songInfo.song.title}</h1>
           <p onClick={handleNicknameClick} className="text-gray-500 hover:underline hover:font-bold cursor-pointer">{songInfo.nickname}</p>
           <h1 className="mt-3">Lyrics</h1>
-          <p>{songInfo.song.lyrics}</p>
+          <p>{`${songInfo.song.lyrics}`}</p>
         </div>
       </div>
     )
