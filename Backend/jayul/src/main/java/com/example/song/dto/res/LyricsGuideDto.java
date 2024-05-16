@@ -1,11 +1,17 @@
 package com.example.song.dto.res;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.*;
 
 @Data
 @AllArgsConstructor
+@Builder
 public class LyricsGuideDto {
-    private String description;
+//    private String description;
+    private String intro;
+    private String verse;
+    private String chorus;
+    private String bridge;
+    private String outro;
+    private String closingRemark;
 }
 
