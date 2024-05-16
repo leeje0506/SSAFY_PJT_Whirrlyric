@@ -14,6 +14,7 @@ import ImageUrl7 from "../../assets/profileImage/profile7.png";
 import ImageUrl8 from "../../assets/profileImage/profile8.png";
 import ImageUrl9 from "../../assets/profileImage/profile9.png";
 import ImageUrl10 from "../../assets/profileImage/profile10.png";
+import {useState} from "react";
 
 
 
@@ -24,7 +25,20 @@ interface ProfileProps {
 
 export default function Profile({ user, isMypage }: ProfileProps) {
   const navigate = useNavigate();
+  const [getImage, setImage] = useState<string>();
 
+  let map = new Map();
+
+  map.set(1, ImageUrl1);
+  map.set(2, ImageUrl2);
+  map.set(3, ImageUrl3);
+  map.set(4, ImageUrl4);
+  map.set(5, ImageUrl5);
+  map.set(6, ImageUrl6);
+  map.set(7, ImageUrl7);
+  map.set(8, ImageUrl8);
+  map.set(9, ImageUrl9);
+  map.set(10, ImageUrl10);
 
   const changeMainSong = async (selectedSongId: number) => {
     try {
@@ -32,16 +46,18 @@ export default function Profile({ user, isMypage }: ProfileProps) {
 
       console.log(selectedSongId);
 
-      console.log(ImageUrl1);
-      console.log(ImageUrl2);
-      console.log(ImageUrl3);
-      console.log(ImageUrl4);
-      console.log(ImageUrl5);
-      console.log(ImageUrl6);
-      console.log(ImageUrl7);
-      console.log(ImageUrl8);
-      console.log(ImageUrl9);
-      console.log(ImageUrl10);
+      setImage(response.data.imageUrl);
+
+      // console.log(ImageUrl1);
+      // console.log(ImageUrl2);
+      // console.log(ImageUrl3);
+      // console.log(ImageUrl4);
+      // console.log(ImageUrl5);
+      // console.log(ImageUrl6);
+      // console.log(ImageUrl7);
+      // console.log(ImageUrl8);
+      // console.log(ImageUrl9);
+      // console.log(ImageUrl10);
       console.log(response);
     } catch (error) {
       console.error(error);
@@ -57,7 +73,7 @@ export default function Profile({ user, isMypage }: ProfileProps) {
     <>
       <div className="flex items-center w-[356px] h-[117px] mx-auto">
         <img
-          src={`ImageUrl${user.imageUrl}`|| altUserImg}
+          src={map.get(getImage)|| altUserImg}
           className="w-28 h-28 rounded-full bg-gray-200 border-gray-400 border-2"
         />
         <div className="ml-6 flex-col">
