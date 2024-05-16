@@ -1,5 +1,3 @@
-import logo from "../assets/altImages/logo.png";
-
 export default function Login() {
   const REST_API_KEY = import.meta.env.VITE_REST_API_KEY;
 
@@ -33,10 +31,10 @@ export default function Login() {
   return (
     <div className=" flex flex-col">
       <div className="flex flex-col my-30">
-        <div className="flex justify-center">
-          <img src={logo} className="" />
+        <div className="flex justify-center mt-5">
+          <img src="/logo.png" />
         </div>
-        <div className="mt-20">
+        <div className="mt-16">
           <h1 className="flex justify-center font-['FasterOne'] font-extrabold text-5xl text-center">
             WHIRRLYRIC
           </h1>
