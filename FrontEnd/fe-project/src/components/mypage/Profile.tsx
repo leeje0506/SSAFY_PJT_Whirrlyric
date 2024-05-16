@@ -15,6 +15,7 @@ import ImageUrl8 from "../../assets/profileImage/profile8.png";
 import ImageUrl9 from "../../assets/profileImage/profile9.png";
 import ImageUrl10 from "../../assets/profileImage/profile10.png";
 import {useState} from "react";
+import getImageUrl from "./getImageUrl.tsx";
 
 
 
@@ -27,7 +28,7 @@ export default function Profile({ user, isMypage }: ProfileProps) {
   const navigate = useNavigate();
   const [getImage, setImage] = useState<string>();
 
-  let map = new Map();
+  const map = new Map();
 
   map.set(1, ImageUrl1);
   map.set(2, ImageUrl2);
@@ -47,6 +48,8 @@ export default function Profile({ user, isMypage }: ProfileProps) {
       console.log(selectedSongId);
 
       setImage(response.data.imageUrl);
+
+      console.log("이미지 URL" + getImage);
 
       // console.log(ImageUrl1);
       // console.log(ImageUrl2);
