@@ -23,7 +23,10 @@ public enum Genre implements LabelEnum{
     CLASSIC("13"),
     MUSICAL("14"),
     JAZZ("15"),
-    ELECTRONIC("16");
+    EDM("16"),
+    DISCO("17"),
+    CHILDRENSONG("18"),
+    HOUSE("19");
 
     private final String label;
 
