@@ -9,7 +9,7 @@ export default function PlayList({ songList }: PlayListProps) {
     <div className="ml-8">
       <div className="my-6">PlayList</div>
       {songList ? (
-        <div className="max-h-60 overflow-y-auto no-scroll">
+        <div className="max-h-96 md:max-h-60 overflow-y-auto no-scroll">
           {songList.map((songWithCreator) => (
             <SimplePlayListCard key={songWithCreator.song.songId} songWithCreator={songWithCreator}/>
           ))}
