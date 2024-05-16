@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import altUserImg from "../../assets/altImages/altUserImg.png";
 import { mypageAPI } from "../../api/mypageAPI";
 import pencilIcon from "../../assets/icons/mypage/pencilIcon";
+import getImageUrl from "./getImageUrl.tsx";
 
 interface ProfileProps {
   user: MemberProfile;
@@ -9,6 +10,7 @@ interface ProfileProps {
 
 export default function Profile({ user }: ProfileProps) {
   const navigate = useNavigate();
+
 
   const changeMainSong = async (selectedSongId: number) => {
     try {
@@ -30,7 +32,7 @@ export default function Profile({ user }: ProfileProps) {
     <>
       <div className="flex items-center w-[356px] h-[117px] mx-auto">
         <img
-          src={user.imageUrl || altUserImg}
+          src={getImageUrl(`${user.imageUrl}`)|| altUserImg}
           className="w-28 h-28 rounded-full bg-gray-200 border-gray-400 border-2"
         />
         <div className="ml-6 flex-col">
