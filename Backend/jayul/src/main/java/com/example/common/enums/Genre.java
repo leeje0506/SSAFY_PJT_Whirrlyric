@@ -20,7 +20,7 @@ public enum Genre implements LabelEnum{
     INDIE("10"),
     TECHNO("11"),
     POP("12"),
-    CLASSIC("13"),
+    TROT("13"),
     MUSICAL("14"),
     JAZZ("15"),
     EDM("16"),
