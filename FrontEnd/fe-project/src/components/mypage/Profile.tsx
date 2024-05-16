@@ -2,7 +2,6 @@ import { useNavigate } from "react-router-dom";
 import altUserImg from "../../assets/altImages/altUserImg.png";
 import { mypageAPI } from "../../api/mypageAPI";
 import pencilIcon from "../../assets/icons/mypage/pencilIcon";
-// import getImageUrl from "./getImageUrl.tsx";
 import KakaoLogout from "../common/KakaoLogout.tsx";
 import ImageUrl1 from "../../assets/profileImage/profile1.png";
 import ImageUrl2 from "../../assets/profileImage/profile2.png";
@@ -15,8 +14,6 @@ import ImageUrl8 from "../../assets/profileImage/profile8.png";
 import ImageUrl9 from "../../assets/profileImage/profile9.png";
 import ImageUrl10 from "../../assets/profileImage/profile10.png";
 
-// import getImageUrl from "./getImageUrl.tsx";
-
 interface ProfileProps {
   user: MemberProfile;
   isMypage: boolean;
@@ -25,18 +22,17 @@ interface ProfileProps {
 export default function Profile({ user, isMypage }: ProfileProps) {
   const navigate = useNavigate();
   const getImage = [
-    {id:1, image: ImageUrl1},
-    {id:2, image: ImageUrl2},
-    {id:3, image: ImageUrl3},
-    {id:4, image: ImageUrl4},
-    {id:5, image: ImageUrl5},
-    {id:6, image: ImageUrl6},
-    {id:7, image: ImageUrl7},
-    {id:8, image: ImageUrl8},
-    {id:9, image: ImageUrl9},
-    {id:10, image: ImageUrl10},
+    { id: 1, image: ImageUrl1 },
+    { id: 2, image: ImageUrl2 },
+    { id: 3, image: ImageUrl3 },
+    { id: 4, image: ImageUrl4 },
+    { id: 5, image: ImageUrl5 },
+    { id: 6, image: ImageUrl6 },
+    { id: 7, image: ImageUrl7 },
+    { id: 8, image: ImageUrl8 },
+    { id: 9, image: ImageUrl9 },
+    { id: 10, image: ImageUrl10 },
   ];
-
 
   const changeMainSong = async (selectedSongId: number) => {
     try {
@@ -46,17 +42,6 @@ export default function Profile({ user, isMypage }: ProfileProps) {
       );
 
       console.log(selectedSongId);
-
-      // console.log(ImageUrl1);
-      // console.log(ImageUrl2);
-      // console.log(ImageUrl3);
-      // console.log(ImageUrl4);
-      // console.log(ImageUrl5);
-      // console.log(ImageUrl6);
-      // console.log(ImageUrl7);
-      // console.log(ImageUrl8);
-      // console.log(ImageUrl9);
-      // console.log(ImageUrl10);
       console.log(response);
     } catch (error) {
       console.error(error);
@@ -68,29 +53,11 @@ export default function Profile({ user, isMypage }: ProfileProps) {
     changeMainSong(selectedSongId);
   };
 
-  // useEffect(() => {
-  //
-  //
-  //   setImage("1", ImageUrl1);
-  //   map.set("2", ImageUrl2);
-  //   map.set("3", ImageUrl3);
-  //   map.set("4", ImageUrl4);
-  //   map.set("5", ImageUrl5);
-  //   map.set("6", ImageUrl6);
-  //   map.set("7", ImageUrl7);
-  //   map.set("8", ImageUrl8);
-  //   map.set("9", ImageUrl9);
-  //   map.set("10", ImageUrl10);
-  //
-  // }, []);
-
   return (
     <>
       <div className="flex items-center w-[356px] h-[117px] mx-auto">
-
-
         <img
-          src={getImage[user.imageUrl -1].image|| altUserImg}
+          src={getImage[user.imageUrl - 1].image || altUserImg}
           className="w-28 h-28 rounded-full bg-gray-200 border-gray-400 border-2"
         />
         <div className="ml-6 flex-col">
