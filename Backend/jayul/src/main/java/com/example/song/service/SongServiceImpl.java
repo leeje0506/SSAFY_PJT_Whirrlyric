@@ -128,6 +128,7 @@ public class SongServiceImpl implements SongService {
         return SongResponse.builder()
             .song(updatedSong)
             .nickname(updatedSong.getMember().getNickname())
+            .memberId(updatedSong.getMember().getMemberId())
             .build();
     }
 
