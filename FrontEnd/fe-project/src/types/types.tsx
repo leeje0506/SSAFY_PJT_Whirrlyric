@@ -13,6 +13,7 @@ interface Song {
 
 interface SongWithCreator {
   song: Song;
+  memberId: number;
   nickname: string;
 }
 

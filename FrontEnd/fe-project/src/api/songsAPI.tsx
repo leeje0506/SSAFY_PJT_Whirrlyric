@@ -28,7 +28,7 @@ export const songsAPI = {
 
   countSongPlay(songId: number): Promise<AxiosResponse> {
     return authAxios({
-      method: "POST",
+      method: "PATCH",
       url: `${END_POINT}/${songId}/play`,
     });
   },
