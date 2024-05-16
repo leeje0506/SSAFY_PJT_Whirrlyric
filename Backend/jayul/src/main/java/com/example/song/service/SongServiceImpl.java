@@ -133,7 +133,7 @@ public class SongServiceImpl implements SongService {
             "곡의 마무리 부분입니다.\n" +
             "\n" +
             "각 요소가 하나의 음악으로 조화롭게 어우러지는 것이 중요합니다.\n" +
-            "자신만의 음악을 만들어보세요!");
+            "자, 이제 자신 만의 음악을 만들어보세요!");
     }
 
     @Override
