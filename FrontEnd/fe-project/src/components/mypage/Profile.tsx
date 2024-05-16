@@ -2,8 +2,20 @@ import { useNavigate } from "react-router-dom";
 import altUserImg from "../../assets/altImages/altUserImg.png";
 import { mypageAPI } from "../../api/mypageAPI";
 import pencilIcon from "../../assets/icons/mypage/pencilIcon";
-import getImageUrl from "./getImageUrl.tsx";
+// import getImageUrl from "./getImageUrl.tsx";
 import KakaoLogout from "../common/KakaoLogout.tsx";
+import ImageUrl1 from "../../assets/profileImage/profile1.png";
+import ImageUrl2 from "../../assets/profileImage/profile2.png";
+import ImageUrl3 from "../../assets/profileImage/profile3.png";
+import ImageUrl4 from "../../assets/profileImage/profile4.png";
+import ImageUrl5 from "../../assets/profileImage/profile5.png";
+import ImageUrl6 from "../../assets/profileImage/profile6.png";
+import ImageUrl7 from "../../assets/profileImage/profile7.png";
+import ImageUrl8 from "../../assets/profileImage/profile8.png";
+import ImageUrl9 from "../../assets/profileImage/profile9.png";
+import ImageUrl10 from "../../assets/profileImage/profile10.png";
+
+
 
 interface ProfileProps {
   user: MemberProfile;
@@ -19,6 +31,17 @@ export default function Profile({ user, isMypage }: ProfileProps) {
       const response = await mypageAPI.changeMyMainSong(user.nickname, selectedSongId);
 
       console.log(selectedSongId);
+
+      console.log(ImageUrl1);
+      console.log(ImageUrl2);
+      console.log(ImageUrl3);
+      console.log(ImageUrl4);
+      console.log(ImageUrl5);
+      console.log(ImageUrl6);
+      console.log(ImageUrl7);
+      console.log(ImageUrl8);
+      console.log(ImageUrl9);
+      console.log(ImageUrl10);
       console.log(response);
     } catch (error) {
       console.error(error);
@@ -34,7 +57,7 @@ export default function Profile({ user, isMypage }: ProfileProps) {
     <>
       <div className="flex items-center w-[356px] h-[117px] mx-auto">
         <img
-          src={getImageUrl(`${user.imageUrl}`)|| altUserImg}
+          src={`ImageUrl${user.imageUrl}.png`|| altUserImg}
           className="w-28 h-28 rounded-full bg-gray-200 border-gray-400 border-2"
         />
         <div className="ml-6 flex-col">
