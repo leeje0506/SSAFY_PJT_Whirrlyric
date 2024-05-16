@@ -30,16 +30,16 @@ export default function Profile({ user, isMypage }: ProfileProps) {
 
   const map = new Map();
 
-  map.set(1, ImageUrl1);
-  map.set(2, ImageUrl2);
-  map.set(3, ImageUrl3);
-  map.set(4, ImageUrl4);
-  map.set(5, ImageUrl5);
-  map.set(6, ImageUrl6);
-  map.set(7, ImageUrl7);
-  map.set(8, ImageUrl8);
-  map.set(9, ImageUrl9);
-  map.set(10, ImageUrl10);
+  map.set("1", ImageUrl1);
+  map.set("2", ImageUrl2);
+  map.set("3", ImageUrl3);
+  map.set("4", ImageUrl4);
+  map.set("5", ImageUrl5);
+  map.set("6", ImageUrl6);
+  map.set("7", ImageUrl7);
+  map.set("8", ImageUrl8);
+  map.set("9", ImageUrl9);
+  map.set("10", ImageUrl10);
 
   const changeMainSong = async (selectedSongId: number) => {
     try {
@@ -76,7 +76,7 @@ export default function Profile({ user, isMypage }: ProfileProps) {
     <>
       <div className="flex items-center w-[356px] h-[117px] mx-auto">
         <img
-          src={map.get(getImage)|| altUserImg}
+          src={map.get(user.imageUrl)|| altUserImg}
           className="w-28 h-28 rounded-full bg-gray-200 border-gray-400 border-2"
         />
         <div className="ml-6 flex-col">
