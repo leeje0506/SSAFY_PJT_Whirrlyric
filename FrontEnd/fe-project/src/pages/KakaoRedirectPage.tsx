@@ -19,7 +19,7 @@ export default function KakaoRedirectPage(){
             localStorage.setItem("accessToken", data.accessToken);
             localStorage.setItem("nickname", data.nickname);
             localStorage.setItem("memberId", data.memberId);
-            navigate("/write-song");  // 성공 시 리다이렉트할 경로
+            navigate("/main");  // 성공 시 리다이렉트할 경로
         } catch (error) {
             console.error("로그인 실패", error);
             // navigate("/");  // 실패 시 리다이렉트할 경로
