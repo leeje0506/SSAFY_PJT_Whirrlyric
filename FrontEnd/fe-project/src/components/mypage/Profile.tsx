@@ -3,6 +3,7 @@ import altUserImg from "../../assets/altImages/altUserImg.png";
 import { mypageAPI } from "../../api/mypageAPI";
 import pencilIcon from "../../assets/icons/mypage/pencilIcon";
 import getImageUrl from "./getImageUrl.tsx";
+import KakaoLogout from "../common/KakaoLogout.tsx";
 
 interface ProfileProps {
   user: MemberProfile;
@@ -71,6 +72,10 @@ export default function Profile({ user }: ProfileProps) {
             </select>
           </form>
         </div>
+
+      </div>
+      <div className="flex justify-end mr-8">
+        <KakaoLogout/>
       </div>
       <hr className="mt-6 border-black" />
     </>
