@@ -72,7 +72,7 @@ public class SongServiceImpl implements SongService {
         Member managedMember = memberService.merge(member);
 
         // 사용자 입력을 포맷에 맞게 조합
-        String formattedLyrics = formatLyrics(requestDto);
+        String formattedLyrics = formatLyrics(requestDto).toString();
         Genre genre = Genre.valueOf(requestDto.getGenre());
 
         // API 요청을 위한 JSON 객체 생성
@@ -199,12 +199,26 @@ public class SongServiceImpl implements SongService {
         return lyricsParts;
     }
 
-    private String formatLyrics(SongRequestDto requestDto) {
-        return String.format(
-            "[INTRO]%n%s%n[VERSE1]%n%s%n[VERSE2]%n%s%n[CHORUS]%n%s%n[BRIDGE]%n%s%n[OUTRO]%n%s",
-            requestDto.getIntro(), requestDto.getVerse1(), requestDto.getVerse2(),
-            requestDto.getChorus(), requestDto.getBridge(), requestDto.getOutro());
+    public List<Map<String, Object>> formatLyrics(SongRequestDto requestDto) {
+        List<Map<String, Object>> lyricsList = new ArrayList<>();
+
+        lyricsList.add(createLyricPart("Intro", requestDto.getIntro()));
+        lyricsList.add(createLyricPart("Verse1", requestDto.getVerse1()));
+        lyricsList.add(createLyricPart("Verse2", requestDto.getVerse2()));
+        lyricsList.add(createLyricPart("Chorus", requestDto.getChorus()));
+        lyricsList.add(createLyricPart("Bridge", requestDto.getBridge()));
+        lyricsList.add(createLyricPart("Outro", requestDto.getOutro()));
+
+        return lyricsList;
     }
+
+    private Map<String, Object> createLyricPart(String partName, String content) {
+        Map<String, Object> lyricPart = new HashMap<>();
+        lyricPart.put("name", partName);
+        lyricPart.put("description", content);
+        return lyricPart;
+    }
+
 
 
     @Override
