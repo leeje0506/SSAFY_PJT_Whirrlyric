@@ -18,9 +18,6 @@ export const defaultAxios: AxiosInstance = axios.create({
 
 export const authAxios: AxiosInstance = axios.create({
   baseURL: SERVER,
-  // headers: {
-  //   Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-  // },
 });
 
 authAxios.interceptors.request.use((config) => {
@@ -34,19 +31,6 @@ authAxios.interceptors.request.use((config) => {
 }, (error) => {
   return Promise.reject(error);
 });
-
-// authAxios.interceptors.request.use(
-//   (config) => {
-//     const token = localStorage.getItem("accessToken");
-//     if (token) {
-//       config.headers["Authorization"] = `Bearer ${token}`;
-//     }
-//     return config;
-//   },
-//   (error) => {
-//     return Promise.reject(error);
-//   }
-// );
 
 // authAxios.interceptors.response.use(
 //   (response: AxiosResponse) => {
