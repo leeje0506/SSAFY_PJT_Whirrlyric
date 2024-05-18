@@ -50,6 +50,7 @@ export default function MusicPlayer({ songId, title, songUrl }: MusicPlayerProps
   const handleEnded = async () => {
     try {
       const response = await songsAPI.countSongPlay(songId);
+      handlePlayPause();
 
       console.log(response);
     } catch (error) {
