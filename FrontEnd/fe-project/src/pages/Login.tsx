@@ -32,7 +32,7 @@ export default function Login() {
     <div className=" flex flex-col">
       <div className="flex flex-col my-30">
         <div className="flex justify-center mt-5">
-          <img src="/logo.png" />
+          <img src="/logo.gif" />
         </div>
         <div className="mt-16">
           <h1 className="flex justify-center font-['FasterOne'] font-extrabold text-5xl text-center">
