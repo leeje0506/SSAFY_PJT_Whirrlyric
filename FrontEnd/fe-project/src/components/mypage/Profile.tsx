@@ -15,13 +15,11 @@ export default function Profile({ user, isMypage }: ProfileProps) {
 
   const changeMainSong = async (selectedSongId: number) => {
     try {
-      const response = await mypageAPI.changeMyMainSong(
+      await mypageAPI.changeMyMainSong(
         user.nickname,
         selectedSongId
       );
 
-      console.log(selectedSongId);
-      console.log(response);
     } catch (error) {
       console.error(error);
     }

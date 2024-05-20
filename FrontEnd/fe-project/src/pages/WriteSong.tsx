@@ -23,7 +23,6 @@ export default function WriteSong() {
 
       // const response = [{"id" : 1, "lyricsname" : "title"},{"id" : 2, "lyricsname" : "intro"},{"id" : 3, "lyricsname" : "verse1"},{"id" : 4, "lyricsname" : "verse2"},{"id" : 5, "lyricsname" : "chorus"},{"id" : 6, "lyricsname" : "bridge"},{"id" : 7, "lyricsname" : "outro"}];
       // 여기서 response.data를 직접 사용하기 전에 데이터 구조를 로그로 확인
-      console.log(response);
       setLyricsList(response.data); // JSON 배열을 상태로 저장
     } catch (error) {
       console.error(error);
@@ -38,9 +37,8 @@ export default function WriteSong() {
         .then((response) => {
           setGenreList(response.data);
         })
-        .catch((error) => console.log(error));
+        .catch(() => {return});
     } catch (error) {
-      console.log(error);
     }
   };
 
@@ -58,11 +56,9 @@ export default function WriteSong() {
       genre: formData.get("genre") as string,
     };
 
-    console.log("Data to be sent:", data);
 
     try {
-      const response = await makeMusicAPI.createMusic(data);
-      console.log("Response:", response.data);
+      await makeMusicAPI.createMusic(data);
 
       Swal.fire({
         title: "노래 생성 시작!",
@@ -102,7 +98,6 @@ export default function WriteSong() {
 
   const clickGuide = async () => {
     const response = await makeMusicAPI.getGuide();
-    console.log("가이드!!!!" + response.data.intro);
     setGuide(response.data);
     setModalVisible(true);
   };

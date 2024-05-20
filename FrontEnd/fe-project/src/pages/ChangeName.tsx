@@ -10,10 +10,9 @@ export default function ChangeName() {
 
   const ChangeName = async (nickname: string) => {
     try {
-      const response = await mypageAPI.changeName(nickname);
+      await mypageAPI.changeName(nickname);
       navigate("/mypage");
 
-      console.log(response);
     } catch (error) {
       Swal.fire({
         title: "변경 실패!",

@@ -12,9 +12,6 @@ export default function KakaoRedirectPage() {
       // 카카오로부터 받아온 code를 서버에 전달하여 카카오로 회원가입 & 로그인한다
       const response = await loginAPI.getKakaoLogin(code);
       const data = response.data; // 응답 데이터
-      console.log("로그인 성공: " + JSON.stringify(data));
-      console.log("accessToken: " + data.accessToken);
-      console.log(data);
       //토큰 받아서 localstorage에 저장
       localStorage.setItem("accessToken", data.accessToken);
       localStorage.setItem("nickname", data.nickname);

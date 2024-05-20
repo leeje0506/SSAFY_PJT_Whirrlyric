@@ -13,7 +13,6 @@ export default function MainPage() {
       const response = await songsAPI.getSongList();
       setSongList(response.data);
 
-      console.log(response);
     } catch (error) {
       console.error(error);
     }

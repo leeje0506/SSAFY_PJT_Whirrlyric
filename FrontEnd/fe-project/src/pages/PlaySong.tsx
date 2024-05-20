@@ -14,8 +14,6 @@ export default function PlaySong() {
     try {
       const response = await songsAPI.getDetailSongInfo(songId);
       setSongInfo(response.data);
-
-      console.log(response.data);
     } catch (error) {
       console.error(error);
     }
