@@ -22,7 +22,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
 @RequiredArgsConstructor
-@EnableWebSecurity(debug = true)
+@EnableWebSecurity
 public class SecurityConfig implements WebMvcConfigurer {
 
     private final TokenService tokenService;
@@ -53,7 +53,6 @@ public class SecurityConfig implements WebMvcConfigurer {
             .authorizeHttpRequests(auth -> auth
                 // OPTIONS 메소드에 대한 요청은 인증 절차 없이 허용
                 .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
-                .requestMatchers(HttpMethod.GET, "/**").permitAll()
                 // 특정 경로에 대한 접근 허용
                 .requestMatchers(PERMIT_URL_ARRAY).permitAll()
                 .anyRequest().authenticated()

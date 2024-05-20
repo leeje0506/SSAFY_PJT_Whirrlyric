@@ -49,11 +49,10 @@ export default function MusicPlayer({ songId, title, songUrl }: MusicPlayerProps
 
   const handleEnded = async () => {
     try {
-      const response = await songsAPI.countSongPlay(songId);
+      await songsAPI.countSongPlay(songId);
+      handlePlayPause();
 
-      console.log(response);
     } catch (error) {
-      console.log(error);
     }
   };
 
@@ -78,7 +77,6 @@ export default function MusicPlayer({ songId, title, songUrl }: MusicPlayerProps
     try {
       songUrl = `https://${songUrl}`;
       const response = await songsAPI.downloadSong(songUrl);
-      console.log(response.data);
       const blob = new Blob([response.data]);
       let fileObjectUrl = window.URL.createObjectURL(blob);
       const link = document.createElement("a");

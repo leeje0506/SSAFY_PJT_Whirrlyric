@@ -29,8 +29,8 @@ public class TokenService {
 
     private final MemberRepository memberRepository;
     private final RedisTemplate<String, Object> tokenRedisTemplate;
-    // private final long TOKEN_PERIOD = 30 * 60 * 1000L; // 30분
-    private final long TOKEN_PERIOD = 10 * 1000L; // 임시 10초
+    private final long TOKEN_PERIOD = 30 * 60 * 1000L; // 30분
+    // private final long TOKEN_PERIOD = 10 * 1000L; // 임시 10초
     private final long REFRESH_PERIOD = 14 * 24 * 60 * 60 * 1000L; // 14일
     private final String REDIS_REFRESH_TOKEN_KEY = "refreshToken";
     @Value("${spring.jwt.token.secret-key}")

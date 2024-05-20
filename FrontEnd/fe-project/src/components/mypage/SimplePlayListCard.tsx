@@ -20,7 +20,7 @@ export default function SimplePlayListCard({songWithCreator}: SimplePlayListCard
         className="w-12 h-12 border-2 border-gray-400 rounded-xl mr-6"
       />
       <div className="flex-col">
-        <h1 className="overflow-hidden overflow-ellipsis whitespace-nowrap max-w-full">{songWithCreator.song.title}</h1>
+        <h1 className="overflow-hidden overflow-ellipsis whitespace-nowrap max-w-full">{songWithCreator.song.title ? songWithCreator.song.title : "제목 없음"}</h1>
         <p className="overflow-hidden overflow-ellipsis whitespace-nowrap max-w-full">{songWithCreator.nickname}</p>
       </div>
     </div>

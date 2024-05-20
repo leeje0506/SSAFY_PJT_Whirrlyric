@@ -6,9 +6,6 @@ const END_POINT = "songs";
 export const makeMusicAPI = {
   // 음악 만들기
   createMusic(data: createMusicForm): Promise<AxiosResponse> {
-    console.log(localStorage.getItem("accessToken"));
-    console.log("creating music");
-    console.log(data);
     return authAxios({
       method: "POST",
       url: `${END_POINT}`,

@@ -6,8 +6,7 @@ export default function KakaoLogout() {
     const navigate = useNavigate();
 
     const kakaoLogout = async () => {
-        const response = await loginAPI.kakaoLogout();
-        console.log(response);
+        await loginAPI.kakaoLogout();
         localStorage.removeItem("nickname");
         localStorage.removeItem("accessToken");
         localStorage.removeItem("memberId");

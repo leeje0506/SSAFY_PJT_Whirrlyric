@@ -19,7 +19,6 @@ export default function MyPage() {
     try {
       const response = await mypageAPI.getMypageInfo(memberId);
       setUser(response.data);
-      console.log(response.data);
     } catch (error) {
       console.error(error);
     }

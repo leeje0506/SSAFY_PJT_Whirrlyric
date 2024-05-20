@@ -3,6 +3,7 @@ import { makeMusicAPI } from "../api/makeMusicAPI.tsx";
 import LyricsItem from "../components/makesongpage/LyricsItem.tsx";
 import { useEffect, useState } from "react";
 import GuidelineItem from "../components/makesongpage/GuidelineItem.tsx";
+import Swal from "sweetalert2";
 
 export default function WriteSong() {
   const navigate = useNavigate();
@@ -15,17 +16,6 @@ export default function WriteSong() {
 
   const [modalVisible, setModalVisible] = useState(false); // 상태 추가
 
-  // const [formData, setFormData] = useState<createMusicForm>({
-  //     title: '',
-  //     intro: '',
-  //     verse1: '',
-  //     verse2: '',
-  //     chorus: '',
-  //     bridge: '',
-  //     outro: '',
-  //     genre: '',
-  // });
-
   // 음악 목록
   const getLyricsList = async () => {
     try {
@@ -33,7 +23,6 @@ export default function WriteSong() {
 
       // const response = [{"id" : 1, "lyricsname" : "title"},{"id" : 2, "lyricsname" : "intro"},{"id" : 3, "lyricsname" : "verse1"},{"id" : 4, "lyricsname" : "verse2"},{"id" : 5, "lyricsname" : "chorus"},{"id" : 6, "lyricsname" : "bridge"},{"id" : 7, "lyricsname" : "outro"}];
       // 여기서 response.data를 직접 사용하기 전에 데이터 구조를 로그로 확인
-      console.log(response);
       setLyricsList(response.data); // JSON 배열을 상태로 저장
     } catch (error) {
       console.error(error);
@@ -46,23 +35,12 @@ export default function WriteSong() {
       await makeMusicAPI
         .getGenreList()
         .then((response) => {
-          // console.log("GENRE");
-          // console.log("data : " + response.data);
-          // console.log("********");
           setGenreList(response.data);
         })
-        .catch((error) => console.log(error));
+        .catch(() => {return});
     } catch (error) {
-      console.log(error);
     }
   };
-
-  // const handleSubmit= async (data : createMusicForm) =>{
-  //         await makeMusicAPI.createMusic(data).then((response)=>
-  //             // navigate 갈 것.
-  //             console.log(response.data))
-  //             .catch((error)=>console.log(error));
-  // }
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -78,16 +56,25 @@ export default function WriteSong() {
       genre: formData.get("genre") as string,
     };
 
-    console.log("Data to be sent:", data);
 
     try {
-      const response = await makeMusicAPI.createMusic(data);
-      console.log("Response:", response.data);
-      // 노래 상세 페이지로 navigate 갈 것.
-      navigate(`/play-song/${response.data.songId}`);
+      await makeMusicAPI.createMusic(data);
+
+      Swal.fire({
+        title: "노래 생성 시작!",
+        text: "1~2분 정도의 시간이 소요됩니다.",
+        icon: "success",
+      }).then(() => {
+        navigate("/main");
+      });
     } catch (error) {
       console.error("Error submitting form:", error);
-      navigate(`/write-song`);
+
+      Swal.fire({
+        title: "노래 생성 실패!",
+        text: "가이드를 확인해 주세요.",
+        icon: "error",
+      });
     }
   };
 
@@ -111,7 +98,6 @@ export default function WriteSong() {
 
   const clickGuide = async () => {
     const response = await makeMusicAPI.getGuide();
-    console.log("가이드!!!!" + response.data.intro);
     setGuide(response.data);
     setModalVisible(true);
   };
@@ -188,13 +174,12 @@ export default function WriteSong() {
                 <div className="p-4 md:p-5 space-y-4">
                   <p className="text-base leading-relaxed text-gray-500 dark:text-gray-400 font-['Pretendard'] font-medium">
                     {guideList ? (
-                        guideList.map((guide) => (
-                            <GuidelineItem key={guide.name} guide={guide} />
-                        ))
+                      guideList.map((guide) => (
+                        <GuidelineItem key={guide.name} guide={guide} />
+                      ))
                     ) : (
-                        <div className="text-lg">No GUIDE</div>
+                      <div className="text-lg">No GUIDE</div>
                     )}
-
                   </p>
                 </div>
                 {/*// <!-- Modal footer -->*/}
@@ -249,7 +234,7 @@ export default function WriteSong() {
               <input
                 type="submit"
                 value="Done"
-                className="mx-auto my-6 text-center text-3xl font-['Pretendard'] font-extrabold bg-black text-white rounded-2xl w-full"
+                className="mx-auto my-6 text-center text-3xl font-['Pretendard'] font-extrabold bg-black text-white rounded-2xl w-full cursor-pointer"
               />
             </div>
           </div>

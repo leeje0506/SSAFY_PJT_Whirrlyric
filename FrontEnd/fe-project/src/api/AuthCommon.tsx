@@ -1,14 +1,14 @@
 import axios, {
-  AxiosError,
+  // AxiosError,
   AxiosInstance,
-  AxiosRequestConfig,
-  AxiosResponse,
+  // AxiosRequestConfig,
+  // AxiosResponse,
 } from "axios";
-import { loginAPI } from "./loginAPI";
+// import { loginAPI } from "./loginAPI";
 
-interface CustomAxiosRequestConfig extends AxiosRequestConfig {
-  _retryCount?: number;
-}
+// interface CustomAxiosRequestConfig extends AxiosRequestConfig {
+//   _retryCount?: number;
+// }
 
 const SERVER = import.meta.env.VITE_SERVER;
 
@@ -18,48 +18,44 @@ export const defaultAxios: AxiosInstance = axios.create({
 
 export const authAxios: AxiosInstance = axios.create({
   baseURL: SERVER,
-  headers: {
-    Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-  },
 });
 
-authAxios.interceptors.request.use(
-  (config) => {
-    const token = localStorage.getItem("accessToken");
-    if (token) {
-      config.headers["Authorization"] = `Bearer ${token}`;
-    }
-    return config;
-  },
-  (error) => {
-    return Promise.reject(error);
+authAxios.interceptors.request.use((config) => {
+  const accessToken = localStorage.getItem("accessToken");
+  
+  if (accessToken) {
+    config.headers['Authorization'] = `Bearer ${accessToken}`;
   }
-);
+  
+  return config;
+}, (error) => {
+  return Promise.reject(error);
+});
 
-authAxios.interceptors.response.use(
-  (response: AxiosResponse) => {
-    return response;
-  },
-  async (error: AxiosError) => {
-    const originalRequest = error.config as CustomAxiosRequestConfig;
+// authAxios.interceptors.response.use(
+//   (response: AxiosResponse) => {
+//     return response;
+//   },
+//   async (error: AxiosError) => {
+//     const originalRequest = error.config as CustomAxiosRequestConfig;
 
-    if (originalRequest._retryCount === undefined) {
-      originalRequest._retryCount = 0;
-    }
+//     if (originalRequest._retryCount === undefined) {
+//       originalRequest._retryCount = 0;
+//     }
 
-    if (error.response?.status === 404 && originalRequest._retryCount < 3) {
-      originalRequest._retryCount += 1;
-      try {
-        const { data } = await loginAPI.reissueToken();
-        localStorage.setItem("accessToken", data.accessToken);
-        authAxios.defaults.headers.common[
-          "Authorization"
-        ] = `Bearer ${data.accessToken}`;
-        return authAxios(originalRequest);
-      } catch (refreshError) {
-        return Promise.reject(refreshError);
-      }
-    }
-    return Promise.reject(error);
-  }
-);
+//     if (error.response?.status === 404 && originalRequest._retryCount < 3) {
+//       originalRequest._retryCount += 1;
+//       try {
+//         const { data } = await loginAPI.reissueToken();
+//         localStorage.setItem("accessToken", data.accessToken);
+//         authAxios.defaults.headers.common[
+//           "Authorization"
+//         ] = `Bearer ${data.accessToken}`;
+//         return authAxios(originalRequest);
+//       } catch (refreshError) {
+//         return Promise.reject(refreshError);
+//       }
+//     }
+//     return Promise.reject(error);
+//   }
+// );

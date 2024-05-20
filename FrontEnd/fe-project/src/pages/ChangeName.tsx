@@ -2,6 +2,7 @@ import { useState } from "react";
 import Button from "../components/common/Button";
 import { mypageAPI } from "../api/mypageAPI";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 export default function ChangeName() {
   const navigate = useNavigate();
@@ -9,12 +10,15 @@ export default function ChangeName() {
 
   const ChangeName = async (nickname: string) => {
     try {
-      const response = await mypageAPI.changeName(nickname);
+      await mypageAPI.changeName(nickname);
       navigate("/mypage");
 
-      console.log(response);
     } catch (error) {
-      alert("불가능한 닉네임 입니다.")
+      Swal.fire({
+        title: "변경 실패!",
+        text: "불가능한 닉네임 입니다.",
+        icon: "warning"
+      });
       console.error(error);
     }
   };
