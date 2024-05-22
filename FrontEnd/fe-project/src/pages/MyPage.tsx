@@ -6,16 +6,19 @@ import { useEffect, useState } from "react";
 
 export default function MyPage() {
   const { memberId } = useParams();
-  const mypageMemberId = Number(memberId);
-  
-  const memberIdStr = localStorage.getItem("memberId");
-  const currentMemberId = Number(memberIdStr);
-
-  const requestMemberId = mypageMemberId ? mypageMemberId : currentMemberId;
-
+  const [requestMemberId, setRequestMemberId] = useState<number | null>(null);
   const [user, setUser] = useState<MemberProfile | null>(null);
 
-  const getMypageInfo = async (memberId:number) => {
+  useEffect(() => {
+    const mypageMemberId = Number(memberId);
+    const memberIdStr = localStorage.getItem("memberId");
+    const currentMemberId = Number(memberIdStr);
+
+    const newRequestMemberId = mypageMemberId || currentMemberId;
+    setRequestMemberId(newRequestMemberId);
+  }, [memberId]);
+
+  const getMypageInfo = async (memberId: number) => {
     try {
       const response = await mypageAPI.getMypageInfo(memberId);
       setUser(response.data);
@@ -25,8 +28,13 @@ export default function MyPage() {
   };
 
   useEffect(() => {
-    getMypageInfo(requestMemberId);
-  }, [memberId]);
+    if (requestMemberId !== null) {
+      getMypageInfo(requestMemberId);
+    }
+  }, [requestMemberId]);
+
+  const memberIdStr = localStorage.getItem("memberId");
+  const currentMemberId = Number(memberIdStr);
 
   return (
     <div>
@@ -35,3 +43,4 @@ export default function MyPage() {
     </div>
   );
 }
+
