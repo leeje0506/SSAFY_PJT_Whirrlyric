@@ -26,7 +26,7 @@ export default function MyPage() {
 
   useEffect(() => {
     getMypageInfo(requestMemberId);
-  }, []);
+  }, [memberId]);
 
   return (
     <div>
